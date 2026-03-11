@@ -1,0 +1,127 @@
+/* eslint-disable @next/next/no-img-element */
+"use client";
+
+import Link from "next/link";
+import { useParams } from "next/navigation";
+import { getTranslation } from "../utils/i18n";
+
+export default function MobileHeadComponent() {
+  const params = useParams();
+  //const pathname = usePathname();
+
+  const rawLocale = params?.locale;
+  const locale = Array.isArray(rawLocale) ? rawLocale[0] : rawLocale || "fr";
+
+  //const pathWithoutLocale = pathname.replace(/^\/(fr|en)/, "");
+
+  /*
+  const switchLanguage = (lang: string) => {
+    window.location.href = `/${lang}${pathWithoutLocale}`;
+  };*/
+
+/*
+  const switchLanguage = (lang: string) => {
+    // Redirige directement vers la page d'accueil avec rechargement complet
+    window.location.replace(`/${lang}`);
+  };
+*/
+  
+
+  const t = getTranslation(locale); // locale = "fr" ou "en"
+  //const latest = t.latest || '';
+  //const articl = t.articles || '';
+  const searchenginepath = t.searchenginepath || "";
+
+
+  return (
+    <>
+      {/* Barre langue */}
+      {/*
+      <div className="w-full bg-gray-100 py-2 px-4 flex justify-end text-sm font-medium block md:hidden">
+
+        <div className="space-x-2 text-gray-700">
+          <span
+            onClick={() => switchLanguage("fr")}
+            className={`cursor-pointer hover:text-red-600 ${locale === "fr" ? "text-red-600" : ""} font-bold`}
+          >
+            FR
+          </span>
+          <span>|</span>
+          <span
+            onClick={() => switchLanguage("en")}
+            className={`cursor-pointer hover:text-red-600 ${locale === "en" ? "text-red-600" : ""} font-bold`}
+          >
+            EN
+          </span>
+        </div>
+      </div>
+      */}
+
+      {/* Header mobile */}
+      <div
+        className="smart-head smart-head-a smart-head-mobile"
+        id="smart-head-mobile"
+        data-sticky="mid"
+        data-sticky-type="smart"
+        data-sticky-full=""
+      >
+        <div
+          className="smart-head-mid smart-head-row-3 is-light smart-head-row-full smart-head-row"
+          style={{ background: "#fff" }}
+        >
+          <div className="inner wrap">
+            <div className="items items-left">
+              <button
+                className="offcanvas-toggle has-icon"
+                type="button"
+                aria-label="Menu"
+              >
+                <span className="hamburger-icon hamburger-icon-a">
+                  <span className="inner" />
+                </span>
+              </button>
+            </div>
+
+            <div className="items items-center">
+              <Link
+                href={`/${locale}`}
+                title=""
+                rel="home"
+                className="logo-link ts-logo logo-is-image"
+              >
+                <span>
+                  <img
+                    className="logo-mobile logo-image logo-image-dark"
+                    src={`/${locale}/images/logo-mobile.webp`}
+                    width={155}
+                    height={36}
+                    alt="Logo"
+                  />
+                  <img
+                    className="logo-mobile logo-image"
+                    src={`/${locale}/images/logo-mobile.webp`}
+                    width={155}
+                    height={36}
+                    alt="Logo"
+                  />
+                </span>
+              </Link>
+            </div>
+
+            <div className="items items-right">
+              <div className="scheme-switcher has-icon-only" />
+              {/* ancienne classe de l'icon de recherche: search-icon has-icon-only is-icon */}
+              <Link
+                href={`/${locale}/${searchenginepath}`}
+                className=""
+                title="Search"
+              >
+                <i className="tsi tsi-search" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

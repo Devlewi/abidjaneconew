@@ -1,0 +1,212 @@
+import { notFound } from "next/navigation";
+import { Metadata } from "next";
+import Link from "next/link";
+import { decode } from "he";
+import SixLastPostListComponent from "@/app/ui/SixLastPostListComponent";
+import { FaClock, FaImage } from "react-icons/fa";
+
+type Props = {
+  params: Promise<{ locale: string; slug: string }>; // On ajoute slug ici
+};
+
+type Post = {
+  related_articles: [];
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  slug: string;
+  link: string;
+  featured_image: string;
+  date_published: string;
+  author: string;
+  views: string;
+  categories: string[];
+  latest_articles: [];
+  categoriesdetails: {
+    name: string;
+    slug: string;
+    id: number;
+  }[];
+};
+
+// ✅ Meta avec Promise pour params
+export async function generateMetadata({ params }: Props) {
+  const { locale, slug } = await params;
+
+  try {
+    // Récupérer les publications de la catégorie spécifique
+    const res = await fetch(
+      `https://siteco.cynomedia-africa.com/wp-json/custom-api/publications/slug-categorie/${slug}/`
+    );
+
+    if (!res.ok) return {};
+
+    const data = await res.json();
+    const firstPost = data.articles[0];
+
+    return {
+      title: firstPost.title,
+      description: firstPost.excerpt,
+      openGraph: {
+        title: firstPost.title,
+        description: firstPost.excerpt,
+        images: [firstPost.featured_image],
+        url: firstPost.link,
+        type: "article",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: firstPost.title,
+        description: firstPost.excerpt,
+        images: [firstPost.featured_image],
+      },
+    };
+  } catch {
+    return {};
+  }
+}
+
+export default async function PostPage({ params }: Props) {
+  const { locale, slug } = await params;
+
+  try {
+    // Récupérer les publications de la catégorie spécifique
+    const res = await fetch(
+      `https://siteco.cynomedia-africa.com/wp-json/custom-api/publications/slug-categorie/${slug}/`
+    );
+
+    if (!res.ok) return notFound();
+    const data = await res.json();
+    console.log(data);
+
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div className="lg:col-span-8">
+            <h1 className="archive-heading">
+              Browsing: <span>Tech</span>{" "}
+            </h1>
+            <section
+              className="block-wrap block-posts-list mb-none"
+              data-id={7}
+            >
+              <div className="block-content mt-4">
+                <div className="loop loop-list loop-sep loop-list-sep grid grid-cols-1 md:grid-cols-1 gap-4">
+                  {data.articles.map((article: Post) => (
+                    <article
+                      key={article.id}
+                      className="l-post small-post small-a-post m-pos-left"
+                      style={{marginBottom:-10}}
+                    >
+                      <div className="small-media">
+                        {article.featured_image ? (
+                          <Link
+                            href={article.link}
+                            className="small-media image-link media-ratio ar-bunyad-thumb"
+                            title={decode(article.title)}
+                          >
+                            <img
+                              src={article.featured_image}
+                              alt={decode(article.title)}
+                              className="rounded-md"
+                              style={{ borderRadius: "6px" }}
+                            />
+                          </Link>
+                        ) : (
+                          <div className="w-full h-[235px] flex items-center justify-center bg-gray-200 border border-gray-300 rounded-md">
+                            <div className="flex flex-col items-center justify-center space-y-2">
+                              <FaImage className="text-gray-400" size={48} />
+                              <span className="text-xs text-gray-400">
+                                Aucune image
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="content">
+                        <div className="">
+                          <div className="bg-[#1a2a54;] border border-gray-300 rounded-md px-4 py-1.5 mb-4 inline-block shadow-sm text-white max-w-full">
+                            Transport
+                          </div>
+
+                          <h2 className="is-title post-tite text-[#1a2a54] font-bol line-clamp-2 mb-2  text-[18px]">
+                            <Link href={article.link}>
+                              {decode(article.title)}
+                            </Link>
+                          </h2>
+
+                          <div className="ecerpt text-[13px] leading-relaxed">
+                            <p>{decode(article.excerpt)}</p>
+                          </div>
+
+                          <div className="post-meta-items meta-below mt-[-10px] mb-4 text-sm text-[#1a2a54]">
+                            <span className="meta-item post-author flex items-center">
+                              <FaClock className="text-[gray] mr-2" size={14} />
+                              Publié le{" "}
+                              {new Date(
+                                article.date_published
+                              ).toLocaleDateString()}{" "}
+                              à{" "}
+                              {new Date(
+                                article.date_published
+                              ).toLocaleTimeString()}
+                            </span>{" "}
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+
+                <nav
+                  className="main-pagination pagination-numbers"
+                  data-type="numbers"
+                >
+                  <span aria-current="page" className="page-numbers current">
+                    1
+                  </span>
+                  <a
+                    className="page-numbers"
+                    href="https://smartmag.theme-sphere.com/tech-1/category/example-1/ts-qs/layout=posts-list%2F/page/2/"
+                  >
+                    2
+                  </a>
+                  <a
+                    className="next page-numbers"
+                    href="https://smartmag.theme-sphere.com/tech-1/category/example-1/ts-qs/layout=posts-list%2F/page/2/"
+                  >
+                    <span className="visuallyhidden">Next</span>
+                    <i className="tsi tsi-angle-right" />
+                  </a>{" "}
+                </nav>
+              </div>
+            </section>
+          </div>
+
+          <aside className="lg:col-span-4 mt-8">
+            <div className="sticky">
+              <div className="block-head block-head-ac block-head-c is-left">
+                <h4 className="heading">
+                  Derniers <span className="text-[#db2e44]"> articles</span>
+                </h4>
+              </div>
+
+              <SixLastPostListComponent locale={locale} />
+
+              <br />
+              <br />
+
+              <div className="w-[300px] h-[600px] bg-gray-300 flex items-center justify-center sm:mx-0 mx-auto">
+                <span className="text-gray-600">Espace pub</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    );
+  } catch {
+    return notFound();
+  }
+}

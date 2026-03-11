@@ -1,0 +1,27 @@
+//import arMessages from "../app/lang/ar.json";
+import frMessages from "../app/lang/fr.json";
+import enMessages from "../app/lang/en.json";
+
+import FooterContent from "./FooterContent";
+
+async function getMessages(locale: string) {
+  if (locale === "fr") {
+    return frMessages;
+  } else {
+    return enMessages;
+  }
+}
+
+type Props = {
+  locale: string;
+};
+
+export default async function Footer({ locale }: Props) {
+  const messages = await getMessages(locale);
+
+  return (
+    <footer className="footer">
+      <FooterContent locale={locale} messages={messages} />
+    </footer>
+  );
+}

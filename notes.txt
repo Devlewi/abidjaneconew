@@ -1,0 +1,15 @@
+import he from 'he';
+{he.decode(item.title)}
+
+
+src
+    app
+        [locale]
+            [slug]
+            article
+                page.tsx
+
+
+
+lien sitemap cameroun eco
+https://www.cameroun-eco.com/sitemap.xml

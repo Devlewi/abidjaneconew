@@ -1,0 +1,30 @@
+import Other from "@/components/Other";
+import Navbar from "../ui/Navbar";
+import "../globals.css";
+import { getDirection } from "../lib/intl";
+import IntlProvider from "../../../providers/IntlProvider";
+import Footer from "../ui/Footer";
+
+type Props = {
+  params: { locale: string };
+  children: React.ReactNode;
+};
+
+export default async function RootLayout({ params, children }: Props) {
+  // Utilise `await` sur `params`
+  const { locale } = await params;
+  const dir = getDirection(locale);
+
+  return (
+    <html lang={locale} dir={dir}>
+        <body>
+      <IntlProvider locale={locale}>
+          <Other />
+          <Navbar />
+          {children}
+          <Footer/>
+      </IntlProvider>
+        </body>
+    </html>
+  );
+}

@@ -1,4 +1,4 @@
-# 🌍 ABIDJAN ECO – Site d’Actualités Économiques et Business au Abidjan
+# 🌍 ABIDJAN ECO – Site d’Actualités Économiques et Business au Abidjan.
 
 **Domaine** : [ABIDJAN-ECO.COM](https://ABIDJAN-ECO.COM)  
 **Frontend** : Next.js + Tailwind CSS  

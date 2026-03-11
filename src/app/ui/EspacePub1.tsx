@@ -1,0 +1,75 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { getTranslation } from "../utils/i18n";
+
+const EspacePub1: React.FC = () => {
+  const params = useParams();
+  const rawLocale = params?.locale;
+  const locale = Array.isArray(rawLocale) ? rawLocale[0] : rawLocale || "fr";
+
+  const t = getTranslation(locale);
+  const advertising = t.advertising || "";
+
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  if (!isClient) return null;
+
+  const cb = Math.floor(Math.random() * 99999999999); // Génère un cb unique pour éviter le cache
+
+  return (
+    <section className="bg-[#1a2a54] py-0 px-4 md:px-10 mb-20 md:mb-12 text-white h-[320px] md:h-[285px]">
+      <center className="font-bold">{advertising}</center>
+      <br />
+
+      <div className="max-w-screen-xl mx-auto" style={{ marginTop: -15 }}>
+        <div className="flex justify-center">
+          {isMobile ? (
+            <iframe
+              id="a594ac8c"
+              name="a594ac8c"
+              src={`https://adserver.cynomedia.com/www/delivery/afr.php?zoneid=237&cb=${cb}`}
+              frameBorder="0"
+              scrolling="no"
+              width="336"
+              height="280"
+              allow="autoplay"
+              style={{ border: "none" }}
+            ></iframe>
+          ) : (
+            <iframe
+              id="a65296ec"
+              name="a65296ec"
+              src={`https://adserver.cynomedia.com/www/delivery/afr.php?zoneid=229&cb=${cb}`}
+              frameBorder="0"
+              scrolling="no"
+              width="970"
+              height="250"
+              allow="autoplay"
+              style={{ border: "none" }}
+            ></iframe>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default EspacePub1;

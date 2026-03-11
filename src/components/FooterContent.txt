@@ -1,0 +1,22 @@
+"use client";
+
+import { IntlProvider, FormattedMessage } from "react-intl";
+
+type Props = {
+  locale: string;
+  messages: Record<string, string>;
+};
+
+export default function FooterContent({ locale, messages }: Props) {
+  return (
+    <IntlProvider locale={locale} messages={messages}>
+      <div>
+        {/* eslint-disable-next-line */}
+        <img src="https://siteco.cynomedia-africa.com/wp-content/uploads/2025/05/logo4.webp" width={60} height={12} alt="NextJS" />
+      </div>
+      <div>
+        <FormattedMessage tagName="p" id="common.footer" />
+      </div>
+    </IntlProvider>
+  );
+}

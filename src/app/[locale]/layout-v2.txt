@@ -1,0 +1,215 @@
+/* eslint-disable @next/next/no-img-element */
+import "../globals.css";
+import { getDirection } from "../lib/intl";
+import IntlProvider from "../../../providers/IntlProvider";
+import Footer from "../ui/Footer";
+import Script from "next/script";
+import ClientComponent from "../ui/ClientComponent";
+import MobileHeadComponent from "../ui/MobileHeadComponent";
+import DesktopHeadComponent from "../ui/DesktopHeadComponent";
+
+// pages/_app.tsx
+//import 'font-awesome/css/font-awesome.min.css';
+
+type Props = {
+  params: { locale: string };
+  children: React.ReactNode;
+};
+
+export default async function RootLayout({ params, children }: Props) {
+  // Utilise `await` sur `params`
+  const { locale } = await params;
+  const dir = getDirection(locale);
+
+  return (
+    <html lang={locale} dir={dir}>
+      <head>
+        <ClientComponent />
+      </head>
+      <body className="home page-template page-template-page-templates page-template-no-wrapper page-template-page-templatesno-wrapper-php page page-id-6 no-sidebar has-lb has-lb-sm ts-img-hov-fade layout-normal elementor-default elementor-kit-1049 elementor-page elementor-page-6">
+        <IntlProvider locale={locale}>
+          <>
+            {/* .main-wrap */}
+            <div className="main-wrap">
+              <div className="off-canvas-backdrop" />
+              <div
+                className="mobile-menu-container off-canvas hide-widgets-sm"
+                id="off-canvas"
+              >
+                <div className="off-canvas-head">
+                  <a href="#" className="close">
+                    <span className="visuallyhidden">Close Menu</span>
+                    <i className="tsi tsi-times" />
+                  </a>
+                  <div className="ts-logo">
+                    <img
+                      className="logo-mobile logo-image logo-image-dark"
+                      src="/images/logo4.jpg"
+                      width={210}
+                      height={56}
+                      alt="SmartMag Tech 1"
+                    />
+                    <img
+                      className="logo-mobile logo-image"
+                      src="images/logo4.jpg"
+                      width={210}
+                      height={56}
+                      alt="SmartMag Tech 1"
+                    />
+                  </div>
+                </div>
+                <div className="off-canvas-content">
+                  <ul className="mobile-menu" />
+
+                  <div className="spc-social-block spc-social spc-social-b smart-head-social">
+                    <a
+                      href="http://facebook.com/themesphere"
+                      className="link service s-facebook"
+                      target="_blank"
+                      rel="nofollow noopener"
+                    >
+                      <i className="icon tsi tsi-facebook" />{" "}
+                      <span className="visuallyhidden">Facebook</span>
+                    </a>
+                    <a
+                      href="http://twitter.com/Theme_Sphere"
+                      className="link service s-twitter"
+                      target="_blank"
+                      rel="nofollow noopener"
+                    >
+                      <i className="icon tsi tsi-twitter" />{" "}
+                      <span className="visuallyhidden">X (Twitter)</span>
+                    </a>
+                    <a
+                      href="#"
+                      className="link service s-instagram"
+                      target="_blank"
+                      rel="nofollow noopener"
+                    >
+                      <i className="icon tsi tsi-instagram" />{" "}
+                      <span className="visuallyhidden">Instagram</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* head desktop */}
+              <DesktopHeadComponent />
+
+              {/* head mobile */}
+              <MobileHeadComponent />
+
+              <div className="main-full">
+                <div id="post-6" className="main-wrap">
+                  {/*isTransitioning && <TransitionPage />*/}
+                  {children}
+                </div>
+              </div>
+            </div>
+            <Footer />
+            {/* .main-wrap */}
+          </>
+          <div className="search-modal-wrap" data-scheme="">
+            <div className="search-modal-box" role="dialog" aria-modal="true">
+              <form
+                method="get"
+                className="search-form"
+                action="https://smartmag.theme-sphere.com/tech-1/"
+              >
+                <input
+                  type="search"
+                  className="search-field live-search-query"
+                  name="s"
+                  placeholder="Chercher..."
+                  defaultValue=""
+                />
+                <button type="submit" className="search-submit visuallyhidden">
+                  Envoyer
+                </button>
+                <p className="message">
+                  Type above and press <em>Enter</em> to search. Press{" "}
+                  <em>Esc</em> to cancel.{" "}
+                </p>
+              </form>
+            </div>
+          </div>
+
+          {/* smartmag-lazyload.js (chargement immédiat) */}
+          <Script
+            id="smartmag-lazyload-js"
+            src="/js/059cf10036c1aff6209bc1476002b48d.js"
+            strategy="beforeInteractive"
+          />
+
+          <Script
+            id="smartmag-lazyload-js-extra"
+            type="text/javascript"
+            strategy="beforeInteractive" // Charge le script avant l'interactivité
+          >
+            {`
+          /* <![CDATA[ */
+          var BunyadLazyConf = { "type": "smart" };
+          /* ]]> */
+        `}
+          </Script>
+
+          {/* magnific-popup.js (defer équivalent) */}
+          <Script
+            id="magnific-popup-js"
+            src="/js/26163b5c5f9f5b17b1a824a3bcf585c9.js"
+            strategy="afterInteractive"
+          />
+
+          {/* theia-sticky-sidebar.js */}
+          <Script
+            id="theia-sticky-sidebar-js"
+            src="/js/436c92d375871a4de2f9bca5482b318f.js"
+            strategy="afterInteractive"
+          />
+
+          {/* smartmag-theme.js */}
+          <Script
+            id="smartmag-theme-js"
+            src="/js/95d48ebe0fd227993325d142e6b718ef.js"
+            strategy="afterInteractive"
+          />
+
+          <Script
+            id="custom-script"
+            type="text/javascript"
+            strategy="beforeInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                "use strict";
+                (() => {
+                  if ([...document.querySelectorAll("script[defer]")].length && "complete" !== document.readyState) {
+                    let t = document.readyState;
+                    Object.defineProperty(document, "readyState", {
+                      configurable: !0,
+                      get() { return t },
+                      set(e) { return t = e }
+                    });
+                    let e = !1;
+                    document.addEventListener("DOMContentLoaded", () => {
+                      t = "interactive";
+                      e = !0;
+                      document.dispatchEvent(new Event("readystatechange"));
+                      e = !1;
+                    });
+                    document.addEventListener("readystatechange", () => {
+                      e || "interactive" !== t || (t = "complete");
+                    });
+                  }
+                })();
+              `,
+            }}
+          />
+
+          <Script id="debloat-config" strategy="beforeInteractive">
+            {`var debloatConfig = { "cssDelayType": "interact", "jsDelayType": "interact", "jsDelayMax": "" };`}
+          </Script>
+        </IntlProvider>
+      </body>
+    </html>
+  );
+}

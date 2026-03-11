@@ -1,0 +1,187 @@
+import { notFound } from "next/navigation";
+import { Metadata } from "next";
+import {
+  FaAngleDoubleRight,
+  FaCalendarAlt,
+  FaChevronRight,
+  FaClock,
+  FaEye,
+  FaFacebookF,
+  FaRegNewspaper,
+  FaTwitter,
+  FaWhatsapp,
+} from "react-icons/fa";
+import Link from "next/link";
+import ShareButtons from "@/app/ui/ShareButtons";
+import SixLastPostListComponent from "@/app/ui/SixLastPostListComponent";
+import ThreeLastPostSimilComponent from "@/app/ui/ThreeLastPostSimilComponent";
+
+type Props = {
+  params: Promise<{ locale: string; slug: string }>; // On ajoute slug ici
+};
+
+type Post = {
+  related_articles: RelatedArticle[];
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  slug: string;
+  link: string;
+  featured_image: string;
+  date_published: string;
+  author: string;
+  views: string;
+  categories: string[];
+  latest_articles: [];
+  categoriesdetails: {
+    name: string;
+    slug: string;
+    id: number;
+  }[];
+};
+
+// ✅ Meta avec Promise pour params
+export async function generateMetadata({ params }: Props) {
+  //const { slug } = await params;
+  const { locale, slug } = await params;
+  //console.log("slug = ",slug);
+  console.log("Langue actuelle : ", locale);
+  //http://siteco.cynomedia-africa.com/wp-json/custom/v1/article/cameroon-bonds-a-success-on-the-public-securities-market/fr
+  try {
+    const res = await fetch(
+      `https://siteco.cynomedia-africa.com/wp-json/custom/v1/article/meta/${slug}/${locale}`,
+
+      { next: { revalidate: 60 } }
+    );
+
+    if (!res.ok) return {};
+
+    const post: Post = await res.json();
+
+    return {
+      title: post.title,
+      description: post.excerpt,
+      openGraph: {
+        title: post.title,
+        description: post.excerpt,
+        images: [post.featured_image],
+        url: post.link,
+        type: "article",
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: post.title,
+        description: post.excerpt,
+        images: [post.featured_image],
+      },
+    };
+  } catch {
+    return {};
+  }
+}
+
+export default async function PostPage({ params }: Props) {
+  const { locale, slug } = await params;
+  //console.log("Langue actuelle : ", locale);
+  //console.log("Slug de l'article : ", slug);
+  //const { slug } = await params;
+
+  try {
+    const res = await fetch(
+      `https://siteco.cynomedia-africa.com/wp-json/custom/v1/article/${slug}/${locale}`,
+      { next: { revalidate: 60 } }
+    );
+
+    if (!res.ok) return notFound();
+    const post: Post = await res.json();
+    //console.log(post.related_articles);
+    if (!post || !post.id) return notFound();
+
+    return (
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          {/* Section article principale */}
+          <div className="lg:col-span-8">
+            <article>
+              {/* Chemin de fer avant le titre */}
+              <div className="flex items-center space-x-2 mb-4 text-sm text-gray-500">
+                <span>
+                  <Link href="/" className="hover:text-[#db2e44]">
+                    Accueil
+                  </Link>
+                </span>
+                <FaAngleDoubleRight className="text-gray-500" />
+                <span>{post.categoriesdetails?.[0]?.name ?? "Catégorie"}</span>
+                <FaAngleDoubleRight className="text-gray-500" />
+                <span className="text-gray-700 font-medium">{post.title}</span>
+              </div>
+
+              {/* sub category */}
+              <div className="bg-[#db2e44] border border-gray-300 rounded-md px-4 py-1.5 mb-4 inline-block shadow-sm text-white">
+                {post.categoriesdetails?.[0]?.name ?? "Catégorie"}
+              </div>
+
+              <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
+
+              <p className="text-sm text-gray-500 mb-4">
+                Publié par {post.author} le{" "}
+                {new Date(post.date_published).toLocaleDateString("fr-FR", {
+                  day: "numeric",
+                  month: "long",
+                  year: "numeric",
+                })}{" "}
+                - {post.views} vues
+              </p>
+
+              <ShareButtons post={post} />
+
+              <img
+                src={post.featured_image}
+                alt={post.title}
+                className="w-full h-auto rounded-lg mb-6"
+              />
+
+              <div
+                className="prose max-w-none text-base lg:text-[16px]" // Par défaut, taille de texte "base", sur desktop 16px
+                dangerouslySetInnerHTML={{ __html: post.content }}
+              />
+            </article>
+
+            <section className="related-posts">
+              <div className="block-head block-head-ac block-head-c is-left">
+                <h4 className="heading">
+                  ARTICLES <span className="text-[#db2e44]"> SIMILAIRES</span>
+                </h4>
+              </div>
+              <ThreeLastPostSimilComponent relatedArticles={post.related_articles} />
+            </section>
+          </div>
+
+          {/* Section pub / contenu secondaire */}
+          <aside className="lg:col-span-4 mt-8">
+            <div className="sticky">
+              <div className="block-head block-head-ac block-head-c is-left">
+                <h4 className="heading">
+                  Derniers <span className="text-[#db2e44]"> articles</span>
+                </h4>
+              </div>
+
+              <SixLastPostListComponent articles={post.latest_articles} />
+
+              <br />
+              <br />
+
+              <div className="w-[300px] h-[600px] bg-gray-300 flex items-center justify-center sm:mx-0 mx-auto">
+                <span className="text-gray-600">Espace pub</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    );
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    return notFound();
+  }
+}

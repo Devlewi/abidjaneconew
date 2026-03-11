@@ -1,0 +1,77 @@
+"use client";
+
+import Link from "next/link";
+import { getTranslation } from "../utils/i18n";
+
+type NavComponentProps = {
+  locale: string;
+};
+
+export default function NavComponent({ locale }: NavComponentProps) {
+  const t = getTranslation(locale);
+  const categoryPath = t.category || "categorie";
+
+  const menu = t.menu;
+  const slugs = t.slugs;
+
+  return (
+    <nav className="navigation navigation-main nav-hov-a">
+      <ul id="menu-main-menu" className="menu">
+        <li className="menu-item">
+          <Link href={`/${locale}`} aria-current="page">{menu.home}</Link>
+        </li>
+
+        <li className="menu-item menu-item-has-children">
+          <Link href={`/${locale}/${categoryPath}/${slugs.eco}`}>{menu.eco}</Link>
+          <ul className="sub-menu">
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.agro}`}>{menu.agro}</Link></li>
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.tech}`}>{menu.tech}</Link></li>
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.entreprises}`}>{menu.entreprises}</Link></li>
+          </ul>
+        </li>
+
+        <li className="menu-item menu-item-has-children">
+          <Link href={`/${locale}/${categoryPath}/${slugs.finance}`}>{menu.finance}</Link>
+          <ul className="sub-menu">
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.banques}`}>{menu.banques}</Link></li>
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.assurances}`}>{menu.assurances}</Link></li>
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.marches}`}>{menu.marches}</Link></li>
+          </ul>
+        </li>
+
+        <li className="menu-item menu-item-has-children">
+          <Link href={`/${locale}/${categoryPath}/${slugs.infra}`}>{menu.infra}</Link>
+          <ul className="sub-menu">
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.btp}`}>{menu.btp}</Link></li>
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.transports}`}>{menu.transports}</Link></li>
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.energie}`}>{menu.energie}</Link></li>
+          </ul>
+        </li>
+
+        <li className="menu-item menu-item-has-children">
+          <Link href={`/${locale}/${categoryPath}/${slugs.decideurs}`}>{menu.decideurs}</Link>
+          <ul className="sub-menu">
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.succes}`}>{menu.succes}</Link></li>
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.talents}`}>{menu.talents}</Link></li>
+          </ul>
+        </li>
+
+        <li className="menu-item menu-item-has-children">
+          <Link href={`/${locale}/${categoryPath}/${slugs.tribune}`}>{menu.tribune}</Link>
+          <ul className="sub-menu">
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.interview}`}>{menu.interview}</Link></li>
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.opinions}`}>{menu.opinions}</Link></li>
+          </ul>
+        </li>
+
+        <li className="menu-item">
+          <Link href={`/${locale}/${categoryPath}/${slugs.decryptage}`}>{menu.decryptage}</Link>
+        </li>
+
+        <li className="menu-item">
+          <Link href={`/${locale}/${categoryPath}/${slugs.international}`}>{menu.international}</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+}

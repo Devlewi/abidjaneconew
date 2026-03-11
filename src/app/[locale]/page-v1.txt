@@ -1,0 +1,180 @@
+import { Metadata } from "next";
+
+import "../globals.css";
+
+import VideoGrid from "../ui/VideoGrid";
+
+//import NewsSwiper from "../ui/FlashInfo";
+
+import EspacePub1 from "../ui/EspacePub1";
+import FlashInfoComponent from "../ui/FlashInfoComponent";
+import ThirdSectionComponent from "../ui/ThirdSectionComponent";
+import FifthSectionComponent from "../ui/FifthSectionComponent";
+import SixfthSectionComponent from "../ui/SixfthSectionComponent";
+import SeventhSectionComponent from "../ui/SeventhSectionComponent";
+import EighthSectionComponent from "../ui/EighthSectionComponent";
+import NinthSectionComponent from "../ui/NinthSectionComponent";
+
+type HomeProps = {
+  params: { locale: string };
+};
+
+export const metadata: Metadata = {
+  title: "CAMEROUN ECO | ACCUEIL",
+  description:
+    "Découvrez en live l'actualité people en photos et vidéos. Toutes les news et actualités de stars, les meilleurs et les pires look de vos stars.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
+  /*
+  openGraph: {
+    title: "ACCUEIL | PEOPLE 237",
+    description: "Page d'accueil de PEOPLE 237",
+    url: "https://people237.vercel.app/",
+    siteName: "PEOPLE 237",
+    images: [{ url: "/favicon.ico", width: 120, height: 120 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ACCUEIL | PEOPLE 237",
+    description: "Page d'accueil de PEOPLE 237",
+    images: ["/favicon.ico"],
+  },*/
+};
+
+export default async function Home({ params }: HomeProps) {
+  return (
+    <>
+      <div
+        id="post-6"
+        className="page-content post-6 page type-page status-publish"
+      >
+        <div
+          data-elementor-type="wp-page"
+          data-elementor-id={6}
+          className="elementor elementor-6"
+        >
+          
+          <section
+            className="has-el-gap el-gap-default elementor-section elementor-top-section elementor-element elementor-element-7bb5416 elementor-section-full_width elementor-section-height-default elementor-section-height-default"
+            data-id="7bb5416"
+            data-element_type="section"
+          >
+            <div className="elementor-container elementor-column-gap-no">
+              <div
+                className="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-3d18b85"
+                data-id="3d18b85"
+                data-element_type="column"
+              >
+                <div className="elementor-widget-wrap elementor-element-populated">
+                  <div
+                    className="elementor-element elementor-element-822f178 elementor-widget elementor-widget-smartmag-featgrid"
+                    data-id="822f178"
+                    data-element_type="widget"
+                    data-widget_type="smartmag-featgrid.default"
+                  >
+                    <div className="elementor-widget-container">
+                      <section
+                        className="block-wrap block-feat-grid block-sc mb-none"
+                        data-id={6}
+                      >
+                        <div className="block-content">
+                          <section className="feat-grid feat-grid-c static feat-grid-full feat-grid-c-full feat-grid-height">
+                            <div className="slides" data-parallax=""></div>
+                          </section>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* section 1 */}          
+          <center style={{ marginTop: "-40px", marginBottom: 40 }}>
+            FLASH
+          </center>
+          {/* Slider Container section 3*/}
+          <FlashInfoComponent />
+
+
+          {/* section 2 */}
+          <div style={{ marginTop: 40, marginBottom: 40 }}>
+            <center>PUBLICITE</center>
+          </div>
+          <EspacePub1/>
+
+
+          {/* section 3 */}          
+          <ThirdSectionComponent/>
+
+          {/* section 4 */}
+          <div style={{ marginTop: -40, marginBottom: 40 }}>
+            <center>PUBLICITE</center>
+          </div>
+
+          <section
+            className="has-el-gap el-gap-default elementor-section elementor-top-section elementor-element elementor-element-eb4ba96 elementor-hidden-phone elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+            data-id="eb4ba96"
+            data-element_type="section"
+            style={{ backgroundColor: "#1a2a54", padding: 20 }}
+          >
+            <div className="elementor-container elementor-column-gap-no">
+              <div
+                className="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-9061213"
+                data-id={9061213}
+                data-element_type="column"
+              >
+                <div className="elementor-widget-wrap elementor-element-populated">
+                  <div
+                    className="elementor-element elementor-element-28247ea elementor-widget elementor-widget-smartmag-codes"
+                    data-id="28247ea"
+                    data-element_type="widget"
+                    data-widget_type="smartmag-codes.default"
+                  >
+                    <div className="elementor-widget-container">
+                      <div className="a-wrap">
+                        {" "}
+                        <a href="images/pub.png" target="_blank" rel="noopener">
+                          <img
+                            src="/images/pub.png"
+                            alt="btr"
+                            width={1200}
+                            height={250}
+                            className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
+                            style={{ borderRadius: 6 }}
+                            loading="lazy"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* section 5 */}
+          <FifthSectionComponent/>
+
+          {/* section 6 */}
+          <SixfthSectionComponent/>
+          
+
+          {/* section 7 */}
+          <SeventhSectionComponent/>
+          
+
+          {/* section 8 */}
+          <EighthSectionComponent/>          
+          
+
+          {/* section 12 */}
+          <NinthSectionComponent/>          
+        </div>
+      </div>
+    </>
+  );
+}

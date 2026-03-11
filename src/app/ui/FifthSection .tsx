@@ -1,0 +1,1005 @@
+/* eslint-disable @next/next/no-img-element */
+"use client";
+
+import React from "react";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "@/app/globals.css"; // ajuste ce chemin selon ton projet
+
+
+const ThirdSectionComponent: React.FC = () => {
+  return (
+    <section
+            className="has-el-gap el-gap-default elementor-section elementor-top-section elementor-element elementor-element-8c5b8a1 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+            data-id="8c5b8a1"
+            data-element_type="section"
+            style={{ marginTop: -40}}
+          >
+            <div className="elementor-container elementor-column-gap-no">
+              <div
+                className="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-269aeb7"
+                data-id="269aeb7"
+                data-element_type="column"
+              >
+                <div className="elementor-widget-wrap elementor-element-populated">
+                  <div
+                    className="elementor-element elementor-element-2382134 elementor-widget elementor-widget-smartmag-highlights"
+                    data-id={2382134}
+                    data-element_type="widget"
+                    data-widget_type="smartmag-highlights.default"
+                  >
+                    <div className="elementor-widget-container">
+                      <section
+                        className="block-wrap block-highlights block-sc mb-none"
+                        data-id={7}
+                        data-is-mixed={1}
+                      >
+                        <div
+                          className="block-head block-head-e2 is-left term-color-56"
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 0,
+                          }}
+                        >
+                          <h4
+                            style={{
+                              background: "#db2e44",
+                              color: "white",
+                              padding: 10,
+                              borderRadius: 5,
+                              fontSize: 20,
+                              width: 160,
+                            }}
+                            className="heading"
+                          >
+                            <a href="#">
+                              &nbsp;&nbsp;&nbsp;&nbsp;POLITIQUE&nbsp;&nbsp;&nbsp;&nbsp;
+                            </a>
+                          </h4>
+                          {/* Ligne qui relie */}
+                          <div
+                            style={{
+                              flexGrow: 1,
+                              height: 1,
+                              background: "#ccc",
+                            }}
+                          />
+                          {/* Zone TOUT */}
+                          <h4
+                            className="head-line"
+                            style={{
+                              border: "1px solid #db2e44",
+                              borderRadius: 8,
+                              padding: "5px 10px",
+                              display: "inline-block",
+                              whiteSpace: "nowrap",
+                              fontSize: "13px !important",
+                              color: "#db2e44",
+                            }}
+                          >
+                            TOUT
+                          </h4>
+                        </div>
+                        <div className="block-content">
+                          <div className="loops-mixed">
+                            <div className="loop loop-grid loop-grid-base grid grid-1 md:grid-1 xs:grid-1">
+                              <article className="l-post grid-post grid-base-post">
+                                <div className="media">
+                                  <a
+                                    href="#"
+                                    className="image-link media-ratio ratio-16-9"
+                                    title="How Tinder Became the App That Defines Online Dating"
+                                  >
+                                    <img
+                                      src="/images//S.E.-PAUL-BIYA-780x440.jpg"
+                                      alt="S.E. PAUL BIYA"
+                                      width={377}
+                                      height={220}
+                                      className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
+                                      loading="lazy"
+                                    />
+                                  </a>
+                                </div>
+                                <div className="content">
+                                  <div className="post-meta post-meta-a has-below">
+                                    <h2
+                                      className="is-title post-title"
+                                      style={{
+                                        color: "#db2e44",
+                                        fontWeight: 700,
+                                      }}
+                                    >
+                                      <a href="#">
+                                        Cameroun : Paul Biya nomme les membres
+                                        du Conseil d’administration de la SNI
+                                      </a>
+                                    </h2>
+                                    <div className="post-meta-items meta-below">
+                                      <span className="meta-item post-author">
+                                        <a
+                                          href="#"
+                                          title="Posts by Shane Doe"
+                                          style={{
+                                            color: "#1a2a54",
+                                            fontWeight: 600,
+                                          }}
+                                          rel="author"
+                                        >
+                                          <i
+                                            className="fa fa-clock"
+                                            style={{
+                                              color: "#db2e44",
+                                              paddingRight: 5,
+                                            }}
+                                          />
+                                          9 avril 2025
+                                        </a>
+                                      </span>
+                                      <span
+                                        className="meta-item has-next-icon date"
+                                        style={{ color: "#1a2a54" }}
+                                      >
+                                        <span className="date-link">
+                                          <time
+                                            className="post-date"
+                                            dateTime="2021-01-14T10:39:34+00:00"
+                                            style={{
+                                              color: "#1a2a54",
+                                              fontWeight: 600,
+                                            }}
+                                          >
+                                            Publié à{" "}
+                                            <span
+                                              style={{
+                                                color: "#db2e44",
+                                              }}
+                                            >
+                                              09h34
+                                            </span>
+                                          </time>
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div
+                                    className="excerpt"
+                                    style={{ color: "#1a2a54" }}
+                                  >
+                                    <p>
+                                      Le Président de la République a nommé le 8
+                                      avril, les membres du Conseil
+                                      d’Administration de la Société Nationale
+                                      d’Investissement (SNI) pour un mandat de
+                                      trois ans. Le Président de la République a
+                                      signé un décret le 10 juillet 2024 portant
+                                      transformation de la société nationale
+                                      d’investissement. Ce décret, qui…
+                                    </p>
+                                  </div>
+                                </div>
+                              </article>
+                            </div>
+                            <div
+                              className="loop loop-small loop-small-a loop-sep loop-small-sep grid grid-1 md:grid-1 sm:grid-1 xs:grid-1"
+                              style={{
+                                overflow: "visible !important",
+                                marginTop: 0,
+                              }}
+                            >
+                              <div style={{ marginTop: 20 }}></div>
+                              <article className="l-post small-post small-a-post m-pos-left">
+                                <div className="small-media">
+                                  <div className="article-category-label2">
+                                    Transport
+                                  </div>
+                                  <a
+                                    href=""
+                                    className="small-media image-link media-ratio ar-bunyad-thumb"
+                                    title="Huawei Planning World’s First 3-Nanometer Mobile Chipset"
+                                  >
+                                    <img
+                                      src="/images/btr.jpg"
+                                      alt="btr"
+                                      width={300} // ajuste selon ton design
+                                      height={200} // ajuste selon ton design
+                                      className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
+                                      style={{ borderRadius: 6 }}
+                                      loading="lazy"
+                                    />
+                                  </a>
+                                </div>
+                                <div className="content">
+                                  <div className="post-meta post-meta-a post-meta-left has-below">
+                                    <h4 className="is-title post-title">
+                                      <a
+                                        href="#"
+                                        style={{
+                                          color: "#db2e44",
+                                          fontWeight: 700,
+                                        }}
+                                      >
+                                        Transport urbain-Yaoundé MoVe : le
+                                        projet Bus Rapid transit relancé
+                                      </a>
+                                    </h4>
+                                    <div
+                                      className="post-meta-items meta-below"
+                                      style={{
+                                        marginTop: "-4px",
+                                        marginBottom: "-10px",
+                                      }}
+                                    >
+                                      <span className="meta-item post-author">
+                                        <a
+                                          href="#"
+                                          title="Posts by Shane Doe"
+                                          style={{
+                                            color: "#1a2a54",
+                                            fontWeight: 600,
+                                          }}
+                                          rel="author"
+                                        >
+                                          <i
+                                            className="fa fa-clock"
+                                            style={{
+                                              color: "#db2e44",
+                                              paddingRight: 5,
+                                            }}
+                                          />
+                                          9 avril 2025
+                                        </a>
+                                      </span>
+                                      <span
+                                        className="meta-item has-next-icon date"
+                                        style={{ color: "#1a2a54" }}
+                                      >
+                                        <span className="date-link">
+                                          <time
+                                            className="post-date"
+                                            dateTime="2021-01-14T10:39:34+00:00"
+                                            style={{
+                                              color: "#1a2a54",
+                                              fontWeight: 600,
+                                            }}
+                                          >
+                                            Publié à{" "}
+                                            <span
+                                              style={{
+                                                color: "#db2e44",
+                                              }}
+                                            >
+                                              09h34
+                                            </span>
+                                          </time>
+                                        </span>
+                                      </span>
+                                    </div>
+                                    <div
+                                      className="excerpt"
+                                      style={{ color: "#1a2a54" }}
+                                    >
+                                      <p>
+                                        Le Président de la République a nommé le
+                                        8 avril, les membres du Conseil
+                                        d’Administration de la Société Nationale
+                                        d’Investissement ...
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </article>
+                              <article className="l-post small-post small-a-post m-pos-left">
+                                <div className="small-media">
+                                  <div className="article-category-label2">
+                                    Culture
+                                  </div>
+                                  <a
+                                    href=""
+                                    className="small-media image-link media-ratio ar-bunyad-thumb"
+                                    title="Huawei Planning World’s First 3-Nanometer Mobile Chipset"
+                                  >
+                                    <img
+                                      src="/images/The-Bachelor.png"
+                                      alt="btr"
+                                      width={300} // ajuste selon ton design
+                                      height={200} // ajuste selon ton design
+                                      className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
+                                      style={{ borderRadius: 6 }}
+                                      loading="lazy"
+                                    />
+                                  </a>
+                                </div>
+                                <div className="content">
+                                  <div className="post-meta post-meta-a post-meta-left has-below">
+                                    <h4 className="is-title post-title">
+                                      <a
+                                        href="#"
+                                        style={{
+                                          color: "#db2e44",
+                                          fontWeight: 700,
+                                        }}
+                                      >
+                                        RD Congo : le Conseil supérieur de
+                                        l’audiovisuel interdit la diffusion de
+                                        la téléréalité « The Bachelor »
+                                      </a>
+                                    </h4>
+                                    <div
+                                      className="post-meta-items meta-below"
+                                      style={{
+                                        marginTop: "-4px",
+                                        marginBottom: "-10px",
+                                      }}
+                                    >
+                                      <span className="meta-item post-author">
+                                        <a
+                                          href="#"
+                                          title="Posts by Shane Doe"
+                                          style={{
+                                            color: "#1a2a54",
+                                            fontWeight: 600,
+                                          }}
+                                          rel="author"
+                                        >
+                                          <i
+                                            className="fa fa-clock"
+                                            style={{
+                                              color: "#db2e44",
+                                              paddingRight: 5,
+                                            }}
+                                          />
+                                          9 avril 2025
+                                        </a>
+                                      </span>
+                                      <span
+                                        className="meta-item has-next-icon date"
+                                        style={{ color: "#1a2a54" }}
+                                      >
+                                        <span className="date-link">
+                                          <time
+                                            className="post-date"
+                                            dateTime="2021-01-14T10:39:34+00:00"
+                                            style={{
+                                              color: "#1a2a54",
+                                              fontWeight: 600,
+                                            }}
+                                          >
+                                            Publié à{" "}
+                                            <span
+                                              style={{
+                                                color: "#db2e44",
+                                              }}
+                                            >
+                                              09h34
+                                            </span>
+                                          </time>
+                                        </span>
+                                      </span>
+                                    </div>
+                                    <div
+                                      className="excerpt"
+                                      style={{ color: "#1a2a54" }}
+                                    >
+                                      <p>
+                                        Cette décision ressort de la plénière
+                                        ordinaire tenue ce 05 septembre 2024. «
+                                        The Bachelor » ne sera pas diusée en
+                                        République Démocratique du Congo.
+                                        L’émission de…
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </article>
+                              <article className="l-post small-post small-a-post m-pos-left">
+                                <div className="small-media">
+                                  <div className="article-category-label2">
+                                    Transport
+                                  </div>
+                                  <a
+                                    href=""
+                                    className="small-media image-link media-ratio ar-bunyad-thumb"
+                                    title="Huawei Planning World’s First 3-Nanometer Mobile Chipset"
+                                  >
+                                    <img
+                                      src="/images/Pauline-Nalova-Lyonga.jpg"
+                                      alt="btr"
+                                      width={300} // ajuste selon ton design
+                                      height={200} // ajuste selon ton design
+                                      className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
+                                      style={{ borderRadius: 6 }}
+                                      loading="lazy"
+                                    />
+                                  </a>
+                                </div>
+                                <div className="content">
+                                  <div className="post-meta post-meta-a post-meta-left has-below">
+                                    <h4 className="is-title post-title">
+                                      <a
+                                        href="#"
+                                        style={{
+                                          color: "#db2e44",
+                                          fontWeight: 700,
+                                        }}
+                                      >
+                                        Examens officiels : la ministre Nalova
+                                        accorde un nouveau délai pour des dépôts
+                                        de dossier
+                                      </a>
+                                    </h4>
+                                    <div
+                                      className="post-meta-items meta-below"
+                                      style={{
+                                        marginTop: "-4px",
+                                        marginBottom: "-10px",
+                                      }}
+                                    >
+                                      <span className="meta-item post-author">
+                                        <a
+                                          href="#"
+                                          title="Posts by Shane Doe"
+                                          style={{
+                                            color: "#1a2a54",
+                                            fontWeight: 600,
+                                          }}
+                                          rel="author"
+                                        >
+                                          <i
+                                            className="fa fa-clock"
+                                            style={{
+                                              color: "#db2e44",
+                                              paddingRight: 5,
+                                            }}
+                                          />
+                                          9 avril 2025
+                                        </a>
+                                      </span>
+                                      <span
+                                        className="meta-item has-next-icon date"
+                                        style={{ color: "#1a2a54" }}
+                                      >
+                                        <span className="date-link">
+                                          <time
+                                            className="post-date"
+                                            dateTime="2021-01-14T10:39:34+00:00"
+                                            style={{
+                                              color: "#1a2a54",
+                                              fontWeight: 600,
+                                            }}
+                                          >
+                                            Publié à{" "}
+                                            <span
+                                              style={{
+                                                color: "#db2e44",
+                                              }}
+                                            >
+                                              09h34
+                                            </span>
+                                          </time>
+                                        </span>
+                                      </span>
+                                    </div>
+                                    <div
+                                      className="excerpt"
+                                      style={{ color: "#1a2a54" }}
+                                    >
+                                      <p>
+                                        Une session de rattrapage est accordée
+                                        aux candidats des concours et de la
+                                        certification (DECC) qui n’ont pas pu
+                                        s’inscrire dans les délais préalablement
+                                        fixés.…
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </article>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <style
+                dangerouslySetInnerHTML={{
+                  __html: "\n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t",
+                }}
+              />
+              <div
+                className="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-ded5d6e"
+                data-id="ded5d6e"
+                data-element_type="column"
+              >
+                <div className="elementor-widget-wrap elementor-element-populated">
+                  <div
+                    className="elementor-element elementor-element-81e61b8 elementor-widget elementor-widget-smartmag-highlights"
+                    data-id="81e61b8"
+                    data-element_type="widget"
+                    data-widget_type="smartmag-highlights.default"
+                  >
+                    <div className="elementor-widget-container">
+                      <section
+                        className="block-wrap block-highlights block-sc mb-none"
+                        data-id={13}
+                        data-is-mixed={1}
+                      >
+                        <div
+                          className="block-head block-head-e2 is-left term-color-56"
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: 0,
+                          }}
+                        >
+                          <h4
+                            style={{
+                              background: "#db2e44",
+                              color: "white",
+                              padding: 10,
+                              borderRadius: 5,
+                              fontSize: 20,
+                              width: 160,
+                            }}
+                            className="heading"
+                          >
+                            <a href="#">
+                              &nbsp;&nbsp;&nbsp;&nbsp;ENTREPRISE&nbsp;&nbsp;&nbsp;&nbsp;
+                            </a>
+                          </h4>
+                          {/* Ligne qui relie */}
+                          <div
+                            style={{
+                              flexGrow: 1,
+                              height: 1,
+                              background: "#ccc",
+                            }}
+                          />
+                          {/* Zone TOUT */}
+                          <h4
+                            className="head-line"
+                            style={{
+                              border: "1px solid #db2e44",
+                              borderRadius: 8,
+                              padding: "5px 10px",
+                              display: "inline-block",
+                              whiteSpace: "nowrap",
+                              fontSize: "13px !important",
+                              color: "#db2e44",
+                            }}
+                          >
+                            TOUT
+                          </h4>
+                        </div>
+                        <div className="block-content">
+                          <div className="loops-mixed">
+                            <div className="loop loop-grid loop-grid-base grid grid-1 md:grid-1 xs:grid-1">
+                              <article className="l-post grid-post grid-base-post">
+                                <div className="media">
+                                  <a
+                                    href="#"
+                                    className="image-link media-ratio ratio-16-9"
+                                    title="How Tinder Became the App That Defines Online Dating"
+                                  >
+                                    <img
+                                      src="/images/Cap.png"
+                                      alt="S.E. PAUL BIYA"
+                                      width={377}
+                                      height={220}
+                                      className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
+                                      loading="lazy"
+                                    />
+                                  </a>
+                                </div>
+                                <div className="content">
+                                  <div className="post-meta post-meta-a has-below">
+                                    <h2
+                                      className="is-title post-title"
+                                      style={{
+                                        color: "#db2e44",
+                                        fontWeight: 700,
+                                      }}
+                                    >
+                                      <a href="#">
+                                        Financement agricole : La Régionale Bank
+                                        se positione comme guichet unique
+                                      </a>
+                                    </h2>
+                                    <div className="post-meta-items meta-below">
+                                      <span className="meta-item post-author">
+                                        <a
+                                          href="#"
+                                          title="Posts by Shane Doe"
+                                          style={{
+                                            color: "#1a2a54",
+                                            fontWeight: 600,
+                                          }}
+                                          rel="author"
+                                        >
+                                          <i
+                                            className="fa fa-clock"
+                                            style={{
+                                              color: "#db2e44",
+                                              paddingRight: 5,
+                                            }}
+                                          />
+                                          9 avril 2025
+                                        </a>
+                                      </span>
+                                      <span
+                                        className="meta-item has-next-icon date"
+                                        style={{ color: "#1a2a54" }}
+                                      >
+                                        <span className="date-link">
+                                          <time
+                                            className="post-date"
+                                            dateTime="2021-01-14T10:39:34+00:00"
+                                            style={{
+                                              color: "#1a2a54",
+                                              fontWeight: 600,
+                                            }}
+                                          >
+                                            Publié à{" "}
+                                            <span
+                                              style={{
+                                                color: "#db2e44",
+                                              }}
+                                            >
+                                              09h34
+                                            </span>
+                                          </time>
+                                        </span>
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div
+                                    className="excerpt"
+                                    style={{ color: "#1a2a54" }}
+                                  >
+                                    <p>
+                                      Le Président de la République a nommé le 8
+                                      avril, les membres du Conseil
+                                      d’Administration de la Société Nationale
+                                      d’Investissement (SNI) pour un mandat de
+                                      trois ans. Le Président de la République a
+                                      signé un décret le 10 juillet 2024 portant
+                                      transformation de la société nationale
+                                      d’investissement. Ce décret, qui…
+                                    </p>
+                                  </div>
+                                </div>
+                              </article>
+                            </div>
+                            <div
+                              className="loop loop-small loop-small-a loop-sep loop-small-sep grid grid-1 md:grid-1 sm:grid-1 xs:grid-1"
+                              style={{
+                                overflow: "visible !important",
+                                marginTop: 0,
+                              }}
+                            >
+                              <div style={{ marginTop: 20 }}></div>
+                              <article className="l-post small-post small-a-post m-pos-left">
+                                <div className="small-media">
+                                  <div className="article-category-label2">
+                                    Transport
+                                  </div>
+                                  <a
+                                    href=""
+                                    className="small-media image-link media-ratio ar-bunyad-thumb"
+                                    title="Huawei Planning World’s First 3-Nanometer Mobile Chipset"
+                                  >
+                                    <img
+                                      src="/images/btr.jpg"
+                                      alt="btr"
+                                      width={300} // ajuste selon ton design
+                                      height={200} // ajuste selon ton design
+                                      className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
+                                      style={{ borderRadius: 6 }}
+                                      loading="lazy"
+                                    />
+                                  </a>
+                                </div>
+                                <div className="content">
+                                  <div className="post-meta post-meta-a post-meta-left has-below">
+                                    <h4 className="is-title post-title">
+                                      <a
+                                        href="#"
+                                        style={{
+                                          color: "#db2e44",
+                                          fontWeight: 700,
+                                        }}
+                                      >
+                                        Transport urbain-Yaoundé MoVe : le
+                                        projet Bus Rapid transit relancé
+                                      </a>
+                                    </h4>
+                                    <div
+                                      className="post-meta-items meta-below"
+                                      style={{
+                                        marginTop: "-4px",
+                                        marginBottom: "-10px",
+                                      }}
+                                    >
+                                      <span className="meta-item post-author">
+                                        <a
+                                          href="#"
+                                          title="Posts by Shane Doe"
+                                          style={{
+                                            color: "#1a2a54",
+                                            fontWeight: 600,
+                                          }}
+                                          rel="author"
+                                        >
+                                          <i
+                                            className="fa fa-clock"
+                                            style={{
+                                              color: "#db2e44",
+                                              paddingRight: 5,
+                                            }}
+                                          />
+                                          9 avril 2025
+                                        </a>
+                                      </span>
+                                      <span
+                                        className="meta-item has-next-icon date"
+                                        style={{ color: "#1a2a54" }}
+                                      >
+                                        <span className="date-link">
+                                          <time
+                                            className="post-date"
+                                            dateTime="2021-01-14T10:39:34+00:00"
+                                            style={{
+                                              color: "#1a2a54",
+                                              fontWeight: 600,
+                                            }}
+                                          >
+                                            Publié à{" "}
+                                            <span
+                                              style={{
+                                                color: "#db2e44",
+                                              }}
+                                            >
+                                              09h34
+                                            </span>
+                                          </time>
+                                        </span>
+                                      </span>
+                                    </div>
+                                    <div
+                                      className="excerpt"
+                                      style={{ color: "#1a2a54" }}
+                                    >
+                                      <p>
+                                        Le Président de la République a nommé le
+                                        8 avril, les membres du Conseil
+                                        d’Administration de la Société Nationale
+                                        d’Investissement ...
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </article>
+                              <article className="l-post small-post small-a-post m-pos-left">
+                                <div className="small-media">
+                                  <div className="article-category-label2">
+                                    Culture
+                                  </div>
+                                  <a
+                                    href=""
+                                    className="small-media image-link media-ratio ar-bunyad-thumb"
+                                    title="Huawei Planning World’s First 3-Nanometer Mobile Chipset"
+                                  >
+                                    <img
+                                      src="/images/The-Bachelor.png"
+                                      alt="btr"
+                                      width={300} // ajuste selon ton design
+                                      height={200} // ajuste selon ton design
+                                      className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
+                                      style={{ borderRadius: 6 }}
+                                      loading="lazy"
+                                    />
+                                  </a>
+                                </div>
+                                <div className="content">
+                                  <div className="post-meta post-meta-a post-meta-left has-below">
+                                    <h4 className="is-title post-title">
+                                      <a
+                                        href="#"
+                                        style={{
+                                          color: "#db2e44",
+                                          fontWeight: 700,
+                                        }}
+                                      >
+                                        RD Congo : le Conseil supérieur de
+                                        l’audiovisuel interdit la diffusion de
+                                        la téléréalité « The Bachelor »
+                                      </a>
+                                    </h4>
+                                    <div
+                                      className="post-meta-items meta-below"
+                                      style={{
+                                        marginTop: "-4px",
+                                        marginBottom: "-10px",
+                                      }}
+                                    >
+                                      <span className="meta-item post-author">
+                                        <a
+                                          href="#"
+                                          title="Posts by Shane Doe"
+                                          style={{
+                                            color: "#1a2a54",
+                                            fontWeight: 600,
+                                          }}
+                                          rel="author"
+                                        >
+                                          <i
+                                            className="fa fa-clock"
+                                            style={{
+                                              color: "#db2e44",
+                                              paddingRight: 5,
+                                            }}
+                                          />
+                                          9 avril 2025
+                                        </a>
+                                      </span>
+                                      <span
+                                        className="meta-item has-next-icon date"
+                                        style={{ color: "#1a2a54" }}
+                                      >
+                                        <span className="date-link">
+                                          <time
+                                            className="post-date"
+                                            dateTime="2021-01-14T10:39:34+00:00"
+                                            style={{
+                                              color: "#1a2a54",
+                                              fontWeight: 600,
+                                            }}
+                                          >
+                                            Publié à{" "}
+                                            <span
+                                              style={{
+                                                color: "#db2e44",
+                                              }}
+                                            >
+                                              09h34
+                                            </span>
+                                          </time>
+                                        </span>
+                                      </span>
+                                    </div>
+                                    <div
+                                      className="excerpt"
+                                      style={{ color: "#1a2a54" }}
+                                    >
+                                      <p>
+                                        Cette décision ressort de la plénière
+                                        ordinaire tenue ce 05 septembre 2024. «
+                                        The Bachelor » ne sera pas diusée en
+                                        République Démocratique du Congo.
+                                        L’émission de…
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </article>
+                              <article className="l-post small-post small-a-post m-pos-left">
+                                <div className="small-media">
+                                  <div className="article-category-label2">
+                                    Transport
+                                  </div>
+                                  <a
+                                    href=""
+                                    className="small-media image-link media-ratio ar-bunyad-thumb"
+                                    title="Huawei Planning World’s First 3-Nanometer Mobile Chipset"
+                                  >
+                                    <img
+                                      src="/images/Pauline-Nalova-Lyonga.jpg"
+                                      alt="btr"
+                                      width={300} // ajuste selon ton design
+                                      height={200} // ajuste selon ton design
+                                      className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
+                                      style={{ borderRadius: 6 }}
+                                      loading="lazy"
+                                    />
+                                  </a>
+                                </div>
+                                <div className="content">
+                                  <div className="post-meta post-meta-a post-meta-left has-below">
+                                    <h4 className="is-title post-title">
+                                      <a
+                                        href="#"
+                                        style={{
+                                          color: "#db2e44",
+                                          fontWeight: 700,
+                                        }}
+                                      >
+                                        Examens officiels : la ministre Nalova
+                                        accorde un nouveau délai pour des dépôts
+                                        de dossier
+                                      </a>
+                                    </h4>
+                                    <div
+                                      className="post-meta-items meta-below"
+                                      style={{
+                                        marginTop: "-4px",
+                                        marginBottom: "-10px",
+                                      }}
+                                    >
+                                      <span className="meta-item post-author">
+                                        <a
+                                          href="#"
+                                          title="Posts by Shane Doe"
+                                          style={{
+                                            color: "#1a2a54",
+                                            fontWeight: 600,
+                                          }}
+                                          rel="author"
+                                        >
+                                          <i
+                                            className="fa fa-clock"
+                                            style={{
+                                              color: "#db2e44",
+                                              paddingRight: 5,
+                                            }}
+                                          />
+                                          9 avril 2025
+                                        </a>
+                                      </span>
+                                      <span
+                                        className="meta-item has-next-icon date"
+                                        style={{ color: "#1a2a54" }}
+                                      >
+                                        <span className="date-link">
+                                          <time
+                                            className="post-date"
+                                            dateTime="2021-01-14T10:39:34+00:00"
+                                            style={{
+                                              color: "#1a2a54",
+                                              fontWeight: 600,
+                                            }}
+                                          >
+                                            Publié à{" "}
+                                            <span
+                                              style={{
+                                                color: "#db2e44",
+                                              }}
+                                            >
+                                              09h34
+                                            </span>
+                                          </time>
+                                        </span>
+                                      </span>
+                                    </div>
+                                    <div
+                                      className="excerpt"
+                                      style={{ color: "#1a2a54" }}
+                                    >
+                                      <p>
+                                        Une session de rattrapage est accordée
+                                        aux candidats des concours et de la
+                                        certification (DECC) qui n’ont pas pu
+                                        s’inscrire dans les délais préalablement
+                                        fixés.…
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </article>
+                            </div>
+                          </div>
+                        </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+  );
+};
+
+export default ThirdSectionComponent;

@@ -1,0 +1,86 @@
+"use client";
+import { useState, useEffect } from "react";
+import Styles from "./styles/StickyFooter.module.css";
+import { fetchStickyStatus } from "../services/api";
+
+const StickyFooter = () => {
+  const [isVisible, setIsVisible] = useState(false); // par défaut masqué
+  const [isMobile, setIsMobile] = useState(false);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+
+    // Détecter mobile
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // Fetch l'API pour récupérer la config sticky
+     // Appel de l'API depuis le service
+     fetchStickyStatus().then((status) => {
+      if (status === "Oui") {
+        setIsVisible(true);
+      }
+    });
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  if (!isClient) return null; // Évite erreurs SSR
+
+  return (
+    isVisible && (
+      <div className={Styles.stickyFooter}>
+        <div className={Styles.footerContent}>
+          <center>
+            {isMobile ? (
+              <ins
+                data-revive-zoneid="233"
+                data-revive-id="97f3bbebf0ebdc5eed163b8fac6171c8"
+              ></ins>
+            ) : (
+              <ins
+                data-revive-zoneid="232"
+                data-revive-id="97f3bbebf0ebdc5eed163b8fac6171c8"
+              ></ins>
+            )}
+
+            <script async src="//client.cynomedia-africa.com/www/delivery/asyncjs.php"></script>
+
+            <button
+              onClick={() => setIsVisible(false)}
+              style={{
+                position: "absolute",
+                right: 10,
+                top: -10,
+                width: 0,
+                height: 32,
+                borderRadius: "50%",
+                fontSize: 15,
+                fontWeight: 700,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "rgba(0, 0, 0, 0.6)",
+                color: "white",
+                border: "none",
+                cursor: "pointer",
+                transition: "background 0.3s",
+              }}
+            >
+              ×
+            </button>
+          </center>
+        </div>
+      </div>
+    )
+  );
+};
+
+export default StickyFooter;

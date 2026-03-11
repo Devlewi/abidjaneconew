@@ -1,0 +1,78 @@
+"use client";
+
+import Link from "next/link";
+import { useParams } from "next/navigation";
+
+export default function MobileHeadComponent() {
+
+  const params = useParams();
+    const rawLocale = params?.locale;
+    const locale = Array.isArray(rawLocale) ? rawLocale[0] : rawLocale || "fr";
+
+  return (
+    <div
+      className="smart-head smart-head-a smart-head-mobile"
+      id="smart-head-mobile"
+      data-sticky="mid"
+      data-sticky-type="smart"
+      data-sticky-full=""
+    >
+      <div style={{background:""}}>EN / FR</div>
+      <div
+        className="smart-head-mid smart-head-row-3 is-light smart-head-row-full smart-head-row"
+        style={{ background: "#fff" }}
+      >
+        <div className="inner wrap">
+          <div className="items items-left ">
+            <button
+              className="offcanvas-toggle has-icon"
+              type="button"
+              aria-label="Menu"
+            >
+              <span className="hamburger-icon hamburger-icon-a">
+                <span className="inner" />
+              </span>
+            </button>
+          </div>
+          <div className="items items-center ">
+            <Link
+              href="/"
+              title=""
+              rel="home"
+              className="logo-link ts-logo logo-is-image"
+            >
+              <span>
+                <img
+                  className="logo-mobile logo-image logo-image-dark"
+                  src={`/${locale}/images/logo-mobile.webp`}
+                  width={155}
+                  height={36}
+                  alt=""
+                />
+                <img
+                  className="logo-mobile logo-image"
+                  src={`/${locale}/images/logo-mobile.webp`}
+                  width={155}
+                  height={36}
+                  alt=""
+                />
+              </span>
+            </Link>
+          </div>
+          <div className="items items-right ">
+            <div className="scheme-switcher has-icon-only">
+              {/**<LanguageSwitcher/> **/}
+            </div>
+            <a
+              href="#"
+              className="search-icon has-icon-only is-icon"
+              title="Search"
+            >
+              <i className="tsi tsi-search" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

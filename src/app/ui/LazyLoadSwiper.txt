@@ -1,0 +1,77 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+'use client';
+
+import { useEffect } from 'react';
+import Script from 'next/script';
+
+export default function LazyLoadSwiper() {
+  useEffect(() => {
+    // Premier script pour gérer l'état de "DOMContentLoaded"
+    (() => {
+      if ([...document.querySelectorAll('script[defer]')].length && document.readyState !== 'complete') {
+        let t = document.readyState;
+        Object.defineProperty(document, 'readyState', {
+          configurable: true,
+          get() {
+            return t;
+          },
+          set(e) {
+            return (t = e);
+          },
+        });
+        let e = false;
+        document.addEventListener('DOMContentLoaded', () => {
+          t = 'interactive';
+          e = true;
+          document.dispatchEvent(new Event('readystatechange'));
+          e = false;
+        });
+        document.addEventListener('readystatechange', () => {
+          if (!e && t === 'interactive') {
+            t = 'complete';
+          }
+        });
+      }
+    })();
+
+    // Script pour initialiser Swiper
+    const mySwiper = new Swiper('.myCardSwiper', {
+      slidesPerView: 4, // 3 cartes sur desktop
+      spaceBetween: 20, // espace entre cartes
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1, // sur mobile
+        },
+        768: {
+          slidesPerView: 2, // sur tablette
+        },
+        1024: {
+          slidesPerView: 4, // sur desktop
+        },
+      },
+    });
+  }, []);
+
+  return (
+    <>
+      {/* Charger Swiper CSS */}
+      <Script
+        src="https://unpkg.com/swiper/swiper-bundle.min.css"
+        strategy="beforeInteractive"
+      />
+      {/* Charger Swiper JS */}
+      <Script
+        src="https://unpkg.com/swiper/swiper-bundle.min.js"
+        strategy="beforeInteractive"
+      />
+    </>
+  );
+}

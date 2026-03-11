@@ -1,0 +1,37 @@
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
+
+const EspacePub300x600: React.FC = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+
+    // Crée dynamiquement la balise <ins>
+    const ins = document.createElement("ins");
+    ins.setAttribute("data-revive-zoneid", "234");
+    ins.setAttribute("data-revive-id", "97f3bbebf0ebdc5eed163b8fac6171c8");
+
+    // Ajoute l'élément <ins> au conteneur
+    containerRef.current?.appendChild(ins);
+
+    // Charge le script Revive
+    const script = document.createElement("script");
+    script.src = "//client.cynomedia-africa.com/www/delivery/asyncjs.php";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  if (!isClient) return null;
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full max-w-[300px] h-[600px] mx-auto mt-[20px] sm:mt-0 relative bg-gray-100 rounded shadow"
+    ></div>
+  );
+};
+
+export default EspacePub300x600;

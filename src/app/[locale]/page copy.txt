@@ -1,0 +1,128 @@
+import { Metadata } from "next";
+
+import "../globals.css";
+
+import EspacePub1 from "../ui/EspacePub1";
+import FlashInfoComponent from "../ui/FlashInfoComponent";
+import ThirdSectionComponent from "../ui/ThirdSectionComponent";
+import FifthSectionComponent from "../ui/FifthSectionComponent";
+import SixfthSectionComponent from "../ui/SixfthSectionComponent";
+import SeventhSectionComponent from "../ui/SeventhSectionComponent";
+import EighthSectionComponent from "../ui/EighthSectionComponent";
+import NinthSectionComponent from "../ui/NinthSectionComponent";
+import EspacePub2 from "../ui/EspacePub2";
+
+type Props = {
+  params: Promise<{ locale: string }>;
+};
+
+export const metadata: Metadata = {
+  title: "CAMEROUN ECO | ACCUEIL",
+  description:
+    "Découvrez en live l'actualité people en photos et vidéos. Toutes les news et actualités de stars, les meilleurs et les pires look de vos stars.",
+  /*
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },  
+  */
+};
+
+export default async function Home({ params }: Props) {
+  //const { locale } = params;
+  const { locale } = await params;
+
+  console.log("LANGUE ACTUELLE = ", locale);
+
+  /*  
+// Appel API WordPress
+   // Consommation de l'API WordPress (exemple d'URL, à adapter)
+   const apiUrl = `https://siteco.cynomedia-africa.com/wp-json/wp/v2/flash_info?lang=${locale}`;
+
+   const res = await fetch(apiUrl, {
+    next: { revalidate: 60 }, // pour ISR si Next 13+
+  });
+  const flashInfoData = await res.json();
+  */
+
+  // API WordPress - Flash Info
+  const flashInfoUrl = `https://siteco.cynomedia-africa.com/wp-json/wp/v2/flash_info?lang=${locale}`;
+
+  // API Custom - Idées & Opinions (fifth section)
+  const opinionsUrl = `https://siteco.cynomedia-africa.com/wp-json/custom/v1/fifth-section/all/${locale}`;
+
+  // Fetch the data in parallel
+  const [flashRes, opinionsRes] = await Promise.all([
+    fetch(flashInfoUrl, { next: { revalidate: 60 } }),
+    fetch(opinionsUrl, { next: { revalidate: 60 } }),
+  ]);
+
+  // Convert responses to JSON
+  const flashInfoData = await flashRes.json();
+  //const ideasOpinionsData = await opinionsRes.json();
+  const fullFifthSectionData = await opinionsRes.json();
+
+  // Extraction des sous-données
+  const section56Data = fullFifthSectionData.section56 || {};
+  const latestIdeasOpinions = fullFifthSectionData.latest_ideas_opinions || [];
+  const latestCommuniques = fullFifthSectionData.latest_communiques || [];
+
+  return (
+    <>
+      <div
+        id="post-6"
+        className="page-content post-6 page type-page status-publish"
+      >
+        <div
+          data-elementor-type="wp-page"
+          data-elementor-id={6}
+          className="elementor elementor-6"
+        >
+          {/* section 1 */}
+          <center className="mt-[15px] mb-[15px] md:mt-[40px] md:mb-[40px]">
+            FLASH
+          </center>
+          {/* Slider Container section 3*/}
+          {/* on va recuperer la data globale et affecter a chaque component la data dont il a besoin */}
+          <FlashInfoComponent data={flashInfoData} />
+
+          {/* section 2 */}
+          <div className="mt-[15px] mb-[15px] md:mt-[40px] md:mb-[40px]">
+            <center>PUBLICITE</center>
+          </div>
+          <EspacePub1 />
+
+          {/* section 3 */}
+          <ThirdSectionComponent locale={locale} />
+
+          {/* section 4 */}
+          <div style={{ marginTop: -40, marginBottom: 40 }}>
+            <center>PUBLICITE</center>
+          </div>
+          <EspacePub2 />
+
+          {/* section 5 */}
+          {/*<FifthSectionComponent locale={locale} data={ideasOpinionsData}/>*/}
+          <FifthSectionComponent
+            locale={locale}
+            ideasOpinions={latestIdeasOpinions}
+            section56={section56Data}
+          />
+
+          {/* section 6 <SixfthSectionComponent communiques={latestCommuniques} />*/}
+          {/* <SixfthSectionComponent /> */}
+          <SixfthSectionComponent locale={locale} communiques={latestCommuniques} />
+
+          {/* section 7 */}
+          <SeventhSectionComponent />
+
+          {/* section 8 */}
+          <EighthSectionComponent />
+
+          {/* section 12 */}
+          <NinthSectionComponent />
+        </div>
+      </div>
+    </>
+  );
+}

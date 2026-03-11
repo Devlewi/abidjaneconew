@@ -1,0 +1,118 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
+"use client";
+// src/ui/Footer.js
+import Link from "next/link";
+import { FaFacebookF, FaTwitter, FaLinkedin, FaYoutube } from "react-icons/fa";
+
+export default function Footer() {
+  return (
+    <footer className="relative text-white py-12 overflow-hidden" style={{ backgroundImage: "url('/images/Vue-Piscine-Hilton.jpg')" }}>
+      {/* Zigzag en arrière-plan */}
+      <div className="absolute inset-0 bg-[#2e76bc] opacity-90"></div>
+
+      {/* Section avec fond d'image et overlay bleu */}
+      <div className="relative bg-cover bg-center h-56">
+        
+        <div className="container flex justify-between items-center px-6 mx-auto text-white relative z-10">
+          {/* Logo CHC */}
+          <Link href="/" className="flex items-center text-[25px] font-semibold">
+            <img src={"/images/logo-chc.png"} style={{ width: 140, marginTop: -30 }} />
+          </Link>
+
+          {/* Icônes réseaux sociaux */}
+          <div className="flex items-center justify-end gap-1">
+            <Link href="https://www.facebook.com" target="_blank" className="bg-white p-2 w-12 h-12 flex items-center justify-center text-[#031354] text-[30px] rounded-md">
+              <FaFacebookF />
+            </Link>
+            <Link href="https://www.linkedin.com" target="_blank" className="bg-white p-2 w-12 h-12 flex items-center justify-center text-[#031354] text-[30px] rounded-md">
+              <FaLinkedin />
+            </Link>
+            <Link href="https://www.twitter.com" target="_blank" className="bg-white p-2 w-12 h-12 flex items-center justify-center text-[#031354] text-[30px] rounded-md">
+              <FaTwitter />
+            </Link>
+            <Link href="https://www.youtube.com" target="_blank" className="bg-white p-2 w-12 h-12 flex items-center justify-center text-[#031354] text-[30px] rounded-md">
+              <FaYoutube />
+            </Link>
+
+            
+          </div>
+        </div>
+      </div>
+
+      {/* Contenu du footer */}
+<div className="container mx-auto px-6 relative z-10" style={{ marginTop: -100 }}>
+  <div className="flex justify-between gap-6 py-6">
+    
+    {/* Colonne 1 - Navigation */}
+    <div className="w-full sm:w-1/5 border-r-2 border-white pr-6">
+      <h3 className="text-[22px] font-semibold mb-4 relative after:block after:w-12 after:h-[2px] after:bg-white after:mt-2">
+        SOCIÉTÉ
+      </h3>
+      <ul className="space-y-2 text-sm">
+        <li><Link href="/vision" className="hover:text-gray-300 transition text-[18px]">Vision</Link></li>
+        <li><Link href="/missions" className="hover:text-gray-300 transition text-[18px]">Missions</Link></li>
+        <li><Link href="/actionnaires" className="hover:text-gray-300 transition text-[18px]">Actionnaires</Link></li>
+        <li><Link href="/management" className="hover:text-gray-300 transition text-[18px]">Management</Link></li>
+      </ul>
+    </div>
+
+    {/* Colonne 2 - Métiers */}
+    <div className="w-full sm:w-1/5 border-r-2 border-white pr-6">
+      <h3 className="text-[22px] font-semibold mb-4 relative after:block after:w-12 after:h-[2px] after:bg-white after:mt-2">
+        MÉTIERS
+      </h3>
+      <ul className="space-y-2 text-sm">
+        <li><Link href="/developpement-hotelier" className="hover:text-gray-300 transition text-[18px]">Développement Hôtelier</Link></li>
+        <li><Link href="/etudes-recherches" className="hover:text-gray-300 transition text-[18px]">Études ou recherches</Link></li>
+      </ul>
+    </div>
+
+    {/* Colonne 3 - Portefeuille */}
+    <div className="w-full sm:w-1/5 border-r-2 border-white pr-6">
+      <h3 className="text-[22px] font-semibold mb-4 relative after:block after:w-12 after:h-[2px] after:bg-white after:mt-2">
+        PORTEFEUILLE
+      </h3>
+      <ul className="space-y-2 text-sm">
+        <li><Link href="/hilton-yaounde" className="hover:text-gray-300 transition text-[18px]">Hilton Yaoundé</Link></li>
+        <li><Link href="/complexe-chc-yde" className="hover:text-gray-300 transition text-[18px]">Complexe CHC Ydé</Link></li>
+      </ul>
+    </div>
+
+    {/* Colonne 4 - Projets */}
+    <div className="w-full sm:w-1/5 border-r-2 border-white pr-6">
+      <h3 className="text-[22px] font-semibold mb-4 relative after:block after:w-12 after:h-[2px] after:bg-white after:mt-2">
+        PROJETS
+      </h3>
+      <ul className="space-y-2 text-sm">
+        <li><Link href="/renovation-hilton" className="hover:text-gray-300 transition text-[18px]">Rénovation Hilton</Link></li>
+        <li><Link href="/rehabilitation-chc" className="hover:text-gray-300 transition text-[18px]">Réhabilitation CHC</Link></li>
+        <li><Link href="/construction-hotel-kriri" className="hover:text-gray-300 transition text-[18px]">Construction Hôtel Kriri</Link></li>
+        <li><Link href="/entree-en-bourse" className="hover:text-gray-300 transition text-[18px]">Entrée en bourse</Link></li>
+      </ul>
+    </div>
+
+    {/* Colonne 5 - Actualités */}
+    <div className="w-full sm:w-1/5">
+      <h3 className="text-[22px] font-semibold mb-4 relative after:block after:w-12 after:h-[2px] after:bg-white after:mt-2">
+        ACTUALITÉS RSE
+      </h3>
+      <ul className="space-y-2 text-sm">
+        <li><Link href="/actualites-rse-2025" className="hover:text-gray-300 transition text-[18px]">2025</Link></li>
+        <li><Link href="/actualites-rse-2024" className="hover:text-gray-300 transition text-[18px]">2024</Link></li>
+        <li><Link href="/actualites-rse-2023" className="hover:text-gray-300 transition text-[18px]">2023</Link></li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Copyright */}
+  <div className="mt-12 text-center">
+    <p className="text-[18px] text-gray-200">
+    © 2025 Cameroun Hôtels Corporation Mentions légales | Protection des données personnelles | Gestion des cookies | Centre de confidentialité
+    </p>
+  </div>
+</div>
+
+    </footer>
+  );
+}

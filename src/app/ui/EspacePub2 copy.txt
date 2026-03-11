@@ -1,0 +1,30 @@
+/* eslint-disable @next/next/no-img-element */
+"use client";
+
+import React from "react";
+
+const EspacePub2: React.FC = () => {
+  return (
+    <section className="bg-[#1a2a54] py-5 px-4 md:px-10 mb-20">
+      <div className="max-w-screen-xl mx-auto">
+        <div className="flex justify-center">
+          <a
+            href="/images/pub.png"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+          >
+            <img
+              src="https://siteco.cynomedia-africa.com/wp-content/uploads/2025/05/pub.png"
+              alt="Publicité"
+              loading="lazy"
+              className="w-full max-w-5xl h-auto rounded shadow-lg"
+            />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default EspacePub2;

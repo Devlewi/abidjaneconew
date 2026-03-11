@@ -1,0 +1,494 @@
+/* eslint-disable @next/next/no-img-element */
+"use client";
+
+import Link from "next/link";
+//import LanguageSwitcher from "./LanguageSwitcher";
+import NavComponent from "./NavComponent";
+import { useParams } from "next/navigation";
+import { getTranslation } from "../utils/i18n";
+import Head from "next/head";
+import { useEffect, useRef, useState } from "react";
+import { getLastUpdate } from "../services/api";
+
+export default function DesktopHeadComponent() {
+  const params = useParams();
+  const rawLocale = params?.locale;
+  const locale = Array.isArray(rawLocale) ? rawLocale[0] : rawLocale || "fr";
+
+  const facebookUrl = process.env.NEXT_PUBLIC_FACEBOOK_URL;
+  const linkedinUrl = process.env.NEXT_PUBLIC_LINKEDIN_URL;
+  const twitterUrl = process.env.NEXT_PUBLIC_TWITTER_URL;
+  const youtubeUrl = process.env.NEXT_PUBLIC_YOUTUBE_URL;
+  const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL;
+  const whatsappUrl = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL;
+
+
+
+  //const lastScrollTop = useRef(0);
+
+  /*useEffect(() => {
+    const headerBot = document.querySelector(".smart-head-bot");
+    if (!headerBot) return;
+
+    const handleScroll = () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+
+      if (currentScroll === 0) {
+        // En haut de la page, on enlève la classe pour remettre margin-top: 0
+        headerBot.classList.remove("hide-on-scroll");
+      } else if (currentScroll > lastScrollTop.current) {
+        // Scroll vers le bas et pas en haut de la page, on ajoute la classe
+        headerBot.classList.add("hide-on-scroll");
+      }
+      // Sinon (scroll vers le haut mais pas à 0), on ne touche à rien
+
+      lastScrollTop.current = currentScroll <= 0 ? 0 : currentScroll;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+ */
+
+/*
+  useEffect(() => {
+    let lastScrollTop = 0;
+  
+    const handleScroll = () => {
+      const header = document.querySelector(".smart-head-bot");
+      if (!header) return;
+  
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  
+      if (scrollTop > lastScrollTop) {
+        header.style.marginTop = "-84px";
+      } else {
+        header.style.marginTop = "-140px";
+      }
+  
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const headerBot = document.querySelector(".smart-head-bot");
+    if (!headerBot) return;
+  
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let stickyApplied = false;
+  
+    const handleScroll = () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+  
+      const scrollingDown = currentScroll > lastScrollTop;
+      const scrollingUp = currentScroll < lastScrollTop;
+  
+      if (currentScroll === 0) {
+        // Tout en haut : retirer sticky
+        headerBot.classList.remove("hide-on-scroll");
+        stickyApplied = false;
+      } else if (scrollingDown && !stickyApplied) {
+        // On descend et sticky pas encore appliqué
+        headerBot.classList.add("hide-on-scroll");
+        stickyApplied = true;
+      } else if (scrollingUp) {
+        // On remonte, garder sticky
+        headerBot.classList.add("hide-on-scroll");
+        stickyApplied = true;
+      }
+  
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  
+  useEffect(() => {
+    const headerBot = document.querySelector(".smart-head-bot");
+    if (!headerBot) return;
+  
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+    const handleScroll = () => {
+      const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollingDown = currentScroll > lastScrollTop;
+      const scrollingUp = currentScroll < lastScrollTop;
+  
+      // Détermine dynamiquement la valeur de retrait
+      const dynamicOffset = currentScroll > 300 ? -84 : -140;
+  
+      if (scrollingDown) {
+        headerBot.style.marginTop = `${dynamicOffset}px`;
+      } else if (scrollingUp) {
+        headerBot.style.marginTop = `0px`;
+      }
+  
+      lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
+  */
+
+
+
+  const headerRef = useRef<HTMLDivElement>(null);
+
+  const [marginTop, setMarginTop] = useState(0); // Valeur par défaut
+
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollY = window.scrollY;
+      //console.log("Scroll Y:", scrollY);
+
+      if (scrollY > 0 && scrollY < 4890.5) {
+        setMarginTop(-140);
+      } else if (scrollY >= 4890.5) {
+        setMarginTop(-84);
+      } else {
+        setMarginTop(0); // Facultatif selon ton besoin
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  
+  
+  const villesCameroun = [
+    "Douala",
+    "Yaoundé",
+    "Bafoussam",
+    "Garoua",
+    "Maroua",
+    "Bertoua",
+  ];
+
+  const villeAleatoire =
+    villesCameroun[Math.floor(Math.random() * villesCameroun.length)];
+  const [lastUpdate, setLastUpdate] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [error, setError] = useState<string | null>(null);
+  
+
+  useEffect(() => {
+    getLastUpdate()
+      .then((data) => {
+        if (data.last_update) {
+          // Transforme en format ISO8601 compatible
+          const isoString = data.last_update.replace(" ", "T");
+          const date = new Date(isoString);
+  
+          // récupère heure et minute
+          //const heures = date.getHours();
+          //const minutes = date.getMinutes();
+  
+          // Formate en "16h25min", avec 0 devant les minutes si < 10
+          //const formattedTime = `${heures}h${minutes < 10 ? "0" : ""}${minutes}min`;
+  
+          //setLastUpdate(formattedTime);
+          setLastUpdate(date.toISOString()); // Stocke en ISO pour réutilisation
+
+        }
+      })
+      .catch((err) => {
+        console.error("Erreur lors de la récupération de la date de mise à jour :", err);
+        setError(err.message);
+      });
+  }, []);
+  
+
+  const options: Intl.DateTimeFormatOptions = {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  };
+
+  const dateFormattee = new Date().toLocaleDateString(
+    locale || "fr-FR",
+    options
+  );
+  const currentDate = `${villeAleatoire}, le ${dateFormattee}`;
+
+  const t = getTranslation(locale); // locale = "fr" ou "en"
+  //const latest = t.latest || '';
+  //const articl = t.articles || '';
+  const searchenginepath = t.searchenginepath || "";
+
+
+  function formatLastUpdate(dateIsoString: string) {
+    if (!dateIsoString) return "";
+  
+    const date = new Date(dateIsoString);
+  
+    const options: Intl.DateTimeFormatOptions = {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    };
+  
+    // Format date en "04 juin 2025" selon locale française
+    const formattedDate = date.toLocaleDateString("fr-FR", options);
+  
+    // Récupérer heures et minutes pour "15h54min"
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+  
+    const formattedTime = `${hours}h${minutes < 10 ? "0" : ""}${minutes}min`;
+  
+    return `le ${formattedDate} - ${formattedTime}`;
+  }
+  
+  return (
+    <>
+      <Head>
+        <link
+          rel="preload"
+          as="image"
+          href={`/${locale}/images/banner-1.webp`}
+          type="image/webp"
+          crossOrigin="anonymous"
+        />
+      </Head>
+      <div
+        className="smart-head smart-head-a smart-head-main"
+        id="smart-head"
+        data-sticky="auto"
+        data-sticky-type="smart"
+        data-sticky-full=""
+        style={{
+          marginTop: `${marginTop}px`,
+          transition: "margin-top 0.3s ease",
+        }}
+      >
+        <div
+          className="smart-head-row smart-head-top s-dark smart-head-row-full"
+          style={{
+            background: `url(/${locale}/images/banner-1.webp) center center / cover no-repeat`,
+            height: "55px", // pas besoin de `!important` en React
+          }}
+        >
+          {/* Overlay sombre semi-transparent */}
+  <div
+    style={{
+      position: "absolute",
+      inset: 0,
+      backgroundColor: "rgba(0, 0, 0, 0.4)", // ajuste l’opacité ici
+      height:55
+
+    }}
+  />
+
+          <div className="inner full">
+            <div className="items items-left ">
+              <div className="nav-wrap">
+                <nav className="navigation navigation-small nav-hov-a">
+                  <ul id="menu-top-links" className="menu">
+                    <li
+                      id="menu-item-1202"
+                      className="menu-item menu-item-type-taxonomy menu-item-object-category menu-cat-3 menu-item-1202"
+                    >
+                      <a href="#" style={{ fontWeight: 900, fontSize: 15 }}>
+                        <img
+                          src={`/${locale}/images/flag.webp`}
+                          style={{ width: "20%" }}
+                          alt="drapeau cameroun"
+                          className="mr-2"
+                        />
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            lineHeight: 1.2,
+                          }}
+                        >
+                          <span>{currentDate}</span>
+                          <span style={{ fontWeight: 400, whiteSpace: "nowrap" }}>
+
+                            Dernière Mise à jour : {formatLastUpdate(lastUpdate)}
+                          </span>
+                        </div>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+            <div className="items items-center empty"></div>
+            <div className="items items-right ">
+              <div className="spc-social-block spc-social spc-social-a smart-head-social">
+                <a
+                  href={facebookUrl}
+                  className="link service s-facebook"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  <i className="fab fa-facebook-f" />{" "}
+                  <span className="visuallyhidden">Facebook</span>
+                </a>
+                <a
+                  href={whatsappUrl}
+                  className="link service s-instagram"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  <i className="fab fa-whatsapp" />{" "}
+                  <span className="visuallyhidden">Whatsapp</span>
+                </a>
+                <a
+                  href={linkedinUrl}
+                  className="link service s-linkedin"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  <i className="fab fa-linkedin-in" />{" "}
+                  <span className="visuallyhidden">LinkedIn</span>
+                </a>
+                <a
+                  href={twitterUrl}
+                  className="link service s-twitter"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  <i className="icon tsi tsi-twitter" />{" "}
+                  <span className="visuallyhidden">Twitter</span>
+                </a>
+                <a
+                  href={youtubeUrl}
+                  className="link service s-youtube"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  <i className="fab fa-youtube" />{" "}
+                  <span className="visuallyhidden">YouTube</span>
+                </a>
+                <a
+                  href={instagramUrl}
+                  className="link service s-instagram"
+                  target="_blank"
+                  rel="nofollow noopener"
+                >
+                  <i className="fab fa-instagram" />{" "}
+                  <span className="visuallyhidden">Instagram</span>
+                </a>                
+              </div>
+
+              {/* pour changer de langues */}
+              {/* <LanguageSwitcher /> */}
+            </div>
+          </div>
+        </div>
+        <div className="smart-head-row smart-head-mid smart-head-row-3 is-light smart-head-row-full">
+          <div className="inner full">
+            <div className="items items-left ">
+              {/* <MobileMenu /> */}
+              <button
+                className="offcanvas-toggle has-icon"
+                type="button"
+                aria-label="Menu"
+              >
+                <span className="hamburger-icon hamburger-icon-a">
+                  <span className="inner" />
+                </span>
+              </button>
+              {/* ancienne classe pour l icon de recherche: search-icon has-icon-only is-icon */}
+              <Link
+                href={`/${locale}/${searchenginepath}`}
+                className=""
+                title="Search"
+              >
+                <i
+                  className="fas fa-search"
+                  style={{ fontSize: 22, transform: "rotate(90deg)" }}
+                />
+              </Link>
+            </div>
+            <div className="items items-center ">
+              <Link
+                href={`/${locale}`}
+                title=""
+                rel="home"
+                className="logo-link ts-logo logo-is-image"
+              >
+                <h1>
+                  <img
+                    src={`/${locale}/images/logo-ce.webp`}
+                    className="logo-image logo-image-dark"
+                    alt=""
+                    srcSet={`/${locale}/images/logo-ce.webp`}
+                  />
+
+                  {/*
+                  
+                  <img
+                    src={`/${locale}/images/logo-ce.webp`}
+                    className="logo-image"
+                    alt=""
+                    srcSet={`/${locale}/images/logo-ce.webp`}
+                    width={301}
+                    height={156}
+                  />
+
+                  */}
+                  
+                  <img
+  src={`/${locale}/images/logo-ce.webp`}
+  className="w-[400px] h-auto"
+  alt=""
+  srcSet={`/${locale}/images/logo-ce.webp`}
+  style={{marginTop:-10}}
+/>
+
+
+
+                  
+                </h1>
+              </Link>
+            </div>
+          </div>
+        </div>
+        {/* le sticky se joue ici */}
+              
+        <div
+  ref={headerRef}
+  className="smart-head-row smart-head-bot smart-head-row-3 is-light has-center-nav smart-head-row-full"
+  style={{
+    
+    transition: "margin-top 0.3s ease",
+  }}
+>
+
+          <div className="inner full">
+            <div className="items items-left empty"></div>
+            <div className="items items-center ">
+              <div className="nav-wrap">
+                <NavComponent locale={locale} />
+              </div>
+            </div>
+            <div className="items items-right empty"></div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

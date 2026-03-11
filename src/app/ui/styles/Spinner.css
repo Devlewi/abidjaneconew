@@ -1,0 +1,59 @@
+/* Overlay couvrant toute la page avec un fond transparent */
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.2); /* Transparence légère */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Ajoute un effet de flou */
+    z-index: 9999; /* Au-dessus de tout */
+  }
+  
+  /* Spinner circulaire avec bleu #a62a2a et blanc */
+  .spinner {
+    width: 100px; /* Taille agrandie */
+    height: 100px;
+    border: 10px solid white; /* Bordure blanche #3b0505*/
+    border-top-color: #2e76bc; /* Couleur principale du spinner */
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Animation de rotation */
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+
+
+
+
+  /* HTML: <div class="loader"></div> */
+.loader {
+  --d:50px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  color: #db2e44;
+  box-shadow: 
+    calc(1*var(--d))      calc(0*var(--d))     0 0,
+    calc(0.707*var(--d))  calc(0.707*var(--d)) 0 1px,
+    calc(0*var(--d))      calc(1*var(--d))     0 2px,
+    calc(-0.707*var(--d)) calc(0.707*var(--d)) 0 3px,
+    calc(-1*var(--d))     calc(0*var(--d))     0 4px,
+    calc(-0.707*var(--d)) calc(-0.707*var(--d))0 5px,
+    calc(0*var(--d))      calc(-1*var(--d))    0 6px;
+  animation: l27 1s infinite steps(8);
+}
+@keyframes l27 {
+  100% {transform: rotate(1turn)}
+}

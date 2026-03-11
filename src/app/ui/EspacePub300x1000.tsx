@@ -1,0 +1,49 @@
+"use client";
+
+import React, { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
+import { getTranslation } from "../utils/i18n";
+
+const EspacePub300x1000: React.FC = () => {
+  const params = useParams();
+  const rawLocale = params?.locale;
+  const locale = Array.isArray(rawLocale) ? rawLocale[0] : rawLocale || "fr";
+
+  const t = getTranslation(locale);
+  const advertisespace = t.advertisespace || "Espace pub";
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
+
+  const cacheBuster = Math.floor(Math.random() * 1_000_000_000);
+  const iframeSrc = `https://adserver.cynomedia.com/www/delivery/afr.php?zoneid=235&cb=${cacheBuster}`;
+
+  return (
+    <div className="w-full max-w-[300px] h-[1226px] bg-gray-300 mx-auto rounded shadow-lg relative mt-[20px] sm:mt-0 overflow-hidden">
+      <span className="absolute z-10 left-1/2 -translate-x-1/2 top-2 text-gray-600 text-[14px] bg-white/70 px-2 py-1 rounded">
+        {advertisespace}
+      </span>
+
+      <iframe
+        id="a498720e"
+        name="a498720e"
+        src={iframeSrc}
+        frameBorder="0"
+        scrolling="no"
+        width="300"
+        height="1226"
+        allow="autoplay"
+        title="Publicité 300x1000"
+        className="absolute inset-0"
+      ></iframe>
+
+    </div>
+  );
+};
+
+export default EspacePub300x1000;
