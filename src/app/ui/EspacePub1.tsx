@@ -45,7 +45,7 @@ const EspacePub1: React.FC = () => {
             <iframe
               id="a594ac8c"
               name="a594ac8c"
-              src={`https://adserver.cynomedia.com/www/delivery/afr.php?zoneid=237777&cb=${cb}`}
+              src={`https://adserver.cynomedia.com/www/delivery/afr.php?zoneid=291&cb=${cb}`}
               frameBorder="0"
               scrolling="no"
               width="336"
@@ -57,7 +57,7 @@ const EspacePub1: React.FC = () => {
             <iframe
               id="a65296ec"
               name="a65296ec"
-              src={`https://adserver.cynomedia.com/www/delivery/afr.php?zoneid=2222229&cb=${cb}`}
+              src={`https://adserver.cynomedia.com/www/delivery/afr.php?zoneid=292&cb=${cb}`}
               frameBorder="0"
               scrolling="no"
               width="970"

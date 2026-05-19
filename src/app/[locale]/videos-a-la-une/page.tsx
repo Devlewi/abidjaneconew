@@ -6,7 +6,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: "CAMEROUN ECO | Vidéos à la une",
+  title: "ABIDJAN ECO | Vidéos à la une",
   description: "Retrouvez toutes les actualités en temps réel dans notre Vidéos à la une.",
 };
 

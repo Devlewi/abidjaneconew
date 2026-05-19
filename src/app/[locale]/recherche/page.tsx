@@ -4,7 +4,7 @@ import { Metadata } from "next";
 
 
 export const metadata: Metadata = {
-  title: "CAMEROUN ECO | MOTEUR DE RECHERCHE",
+  title: "ABIDJAN ECO | MOTEUR DE RECHERCHE",
   description: "Recherchez et explorez tous les derniers articles disponibles.",
 };
 

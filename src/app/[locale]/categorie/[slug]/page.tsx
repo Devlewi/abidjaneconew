@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props) {
     // Vérifier s’il y a au moins un article
     if (data.articles.length === 0) {
       return {
-        title: "CAMEROUN ECO - " + categoryName,
+        title: "ABIDJAN ECO - " + categoryName,
         description: `Aucun article pour la catégorie ${categoryName}`,
       };
     }
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props) {
     //console.log("firstPost = ",data.category_name);
 
     return {
-      title: "CAMEROUN ECO - " + he.decode(data.category_name),
+      title: "ABIDJAN ECO - " + he.decode(data.category_name),
       description: he.decode(firstPost.excerpt),
       openGraph: {
         title: he.decode(data.category_name),

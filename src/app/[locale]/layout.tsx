@@ -44,6 +44,23 @@ export default async function RootLayout(props: Props) {
           crossOrigin="anonymous"
         />
 
+
+        {/* Google Analytics - Utilisez 'beforeInteractive' ou placez-le plus haut */}
+<Script
+  strategy="afterInteractive" // Gardez afterInteractive pour la performance
+  src="https://www.googletagmanager.com/gtag/js?id=G-BMLB9L6DLV"
+/>
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BMLB9L6DLV', {
+      page_path: window.location.pathname,
+    });
+  `}
+</Script>
+
 {/*
 <Script
     id="adsense-init"
@@ -248,6 +265,7 @@ export default async function RootLayout(props: Props) {
       </Script>
       </head>
       <body className="home page-template page-template-page-templates page-template-no-wrapper page-template-page-templatesno-wrapper-php page page-id-6 no-sidebar has-lb has-lb-sm ts-img-hov-fade layout-normal elementor-default elementor-kit-1049 elementor-page elementor-page-6">
+
         <IntlProvider locale={locale}>
           <>
             {/* .main-wrap */}
@@ -482,23 +500,7 @@ export default async function RootLayout(props: Props) {
           </Script>
         </IntlProvider>
       
-       {/* Google Analytics - Script async */}
-       <Script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-6G7NCZPPCJ"
-        />
-
-        {/* Google Analytics - Initialisation */}
-        <Script id="google-analytics">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-6G7NCZPPCJ', {
-              page_path: window.location.pathname,
-            });
-          `}
-        </Script>
+       
       </body>
     </html>
   );

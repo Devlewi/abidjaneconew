@@ -21,7 +21,7 @@ const EspacePub300x1000: React.FC = () => {
   if (!isClient) return null;
 
   const cacheBuster = Math.floor(Math.random() * 1_000_000_000);
-  const iframeSrc = `https://adserver.cynomedia.com/www/delivery/afr.php?zoneid=23555555&cb=${cacheBuster}`;
+  const iframeSrc = `https://adserver.cynomedia.com/www/delivery/afr.php?zoneid=289&cb=${cacheBuster}`;
 
   return (
     <div className="w-full max-w-[300px] h-[1226px] bg-gray-300 mx-auto rounded shadow-lg relative mt-[20px] sm:mt-0 overflow-hidden">

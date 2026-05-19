@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.cameroun-eco.com
+Host: https://www.abidjan-eco.com
 
 # Sitemaps
-Sitemap: https://www.cameroun-eco.com/sitemap.xml
+Sitemap: https://www.abidjan-eco.com/sitemap.xml

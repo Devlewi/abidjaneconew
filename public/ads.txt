@@ -1,15 +1,9 @@
 google.com, pub-9760088965124508, DIRECT, f08c47fec0942fa0
-
 taboola.com, 1272514, DIRECT, c228e6794e811952
 smartadserver.com, 3563, RESELLER
 beachfront.com, 13749, RESELLER, e2541279e8e2ca4d
 advertising.com, 28458, RESELLER
 admanmedia.com, 556, RESELLER 
-
-
-
-
-
 OWNERDOMAIN=people237.com
 MANAGERDOMAIN=themoneytizer.com
 themoneytizer.com,5637,DIRECT
@@ -1269,12 +1263,6 @@ freewheel.tv,1590601,RESELLER
 freewheel.tv,1590606,RESELLER
 yahoo.com,59261,RESELLER,e1a5b5b6e3255540
 themediagrid.com,4DQHAP,RESELLER,35d5010d7789b49d
-
-
-
-
-
-
 dailymotion.com, 128388946, DIRECT, fd25240165056a01
 dailymotion.com, 134295479, DIRECT, fd25240165056a01
 sovrn.com, 346012, DIRECT, fafdf38b16bf6b2b

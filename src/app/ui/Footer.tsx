@@ -29,15 +29,15 @@ export default function Footer({ isVisible }: StickyFooterProps) {
   const mentionlegalslug = t.mentionlegalslug || "";
   const mentionlegaltxt = t.mentionlegaltxt || "";
   
-  const dataprotectionslug = t.dataprotectionslug || "";
-  const dataprotectiontxt = t.dataprotectiontxt || "";
+  //const dataprotectionslug = t.dataprotectionslug || "";
+  //const dataprotectiontxt = t.dataprotectiontxt || "";
   
-  const cookietxt = t.cookietxt || "";
-  const cookieslug = t.cookieslug || "";
+  //const cookietxt = t.cookietxt || "";
+  //const cookieslug = t.cookieslug || "";
   
   
-  const privacytxt = t.privacytxt || "";
-  const privacyslug = t.privacyslug || "";
+  //const privacytxt = t.privacytxt || "";
+  //const privacyslug = t.privacyslug || "";
 
 
   const menu = t.menu;
@@ -367,10 +367,13 @@ export default function Footer({ isVisible }: StickyFooterProps) {
           <Link href={`/${locale}/${mentionlegalslug}`} style={{ color: "white", fontWeight: 800 }}>
             {mentionlegaltxt}
           </Link>
+          {/*
           <span>|</span>
           <Link href={`/${locale}/${dataprotectionslug}`} style={{ color: "white", fontWeight: 800 }}>
             {dataprotectiontxt}
           </Link>
+          */}
+     {/*
           <span>|</span>
           <Link href={`/${locale}/${cookieslug}`} style={{ color: "white", fontWeight: 800 }}>
             {cookietxt}
@@ -379,6 +382,7 @@ export default function Footer({ isVisible }: StickyFooterProps) {
           <Link href={`/${locale}/${privacyslug}`} style={{ color: "white", fontWeight: 800 }}>
             {privacytxt}
           </Link>
+     */}
         </div>
     </center>
   </div>

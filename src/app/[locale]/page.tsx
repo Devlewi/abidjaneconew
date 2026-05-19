@@ -43,11 +43,11 @@ export async function generateMetadata({
   };
 
   return {
-    title: locale === "en" ? "Abidjan ECO | HOME" : "ABIDJAN ECO | ACCUEIL",
+    title: locale === "en" ? "ABIDJAN ECO | HOME" : "ABIDJAN ECO | ACCUEIL",
     description:
       locale === "en"
-        ? "Abidjan ECO is your economic news portal dedicated to Abidjan"
-        : "Abidjan ECO est votre portail d'information économique dédié à Abidjan",
+        ? "ABIDJAN ECO is your economic news portal dedicated to ABIDJAN"
+        : "ABIDJAN ECO est votre portail d'information économique dédié à ABIDJAN",
 
     // Icônes de navigation
     icons: {
@@ -60,11 +60,11 @@ export async function generateMetadata({
 
     // Balises Open Graph pour Facebook, WhatsApp, etc.
     openGraph: {
-      title: locale === "en" ? "Abidjan ECO | HOME" : "ABIDJAN ECO | ACCUEIL",
+      title: locale === "en" ? "ABIDJAN ECO | HOME" : "ABIDJAN ECO | ACCUEIL",
       description:
         locale === "en"
-          ? "Abidjan ECO is your economic news portal dedicated to Abidjan"
-          : "ABIDJAN ECO est votre portail d'information économique dédié au ABIDJAN",
+          ? "ABIDJAN ECO is your economic news portal dedicated to ABIDJAN"
+          : "ABIDJAN ECO est votre portail d'information économique dédié à ABIDJAN",
       url: `${siteDomain}/${locale}`,
       siteName: "ABIDJAN ECO",
       type: "website",
@@ -81,11 +81,11 @@ export async function generateMetadata({
     // Twitter card (aperçu sur Twitter/X)
     twitter: {
       card: "summary_large_image",
-      title: locale === "en" ? "Abidjan ECO | HOME" : "ABIDJAN ECO | ACCUEIL",
+      title: locale === "en" ? "ABIDJAN ECO | HOME" : "ABIDJAN ECO | ACCUEIL",
       description:
         locale === "en"
-          ? "Abidjan ECO is your economic news portal dedicated to Abidjan"
-          : "ABIDJAN ECO est votre portail d'information économique dédié au ABIDJAN",
+          ? "ABIDJAN ECO is your economic news portal dedicated to ABIDJAN"
+          : "ABIDJAN ECO est votre portail d'information économique dédié à ABIDJAN",
       images: [`${siteDomain}/${locale}/images/og-image.png`],
     },
   };

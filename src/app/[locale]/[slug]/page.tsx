@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { slug,locale } = await params;
 
     // Choisir le titre selon la locale
-    const siteTitle = locale === 'en' ? 'CAMEROON ECO' : 'CAMEROUN ECO';
+    const siteTitle = locale === 'en' ? 'ABIDJAN ECO' : 'ABIDJAN ECO';
 
   return {
     title: `${siteTitle} | ${slug.replace(/-/g, ' ')}`,
