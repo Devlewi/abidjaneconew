@@ -262,6 +262,15 @@ const villeAleatoire =
                       {" "}
                       <span className="visuallyhidden">Threads</span>
                     </a>                
+                    <a
+                      href={process.env.NEXT_PUBLIC_TIKTOK_URL}
+                      className="link service s-tiktok"
+                      target="_blank"
+                      rel="nofollow noopener"
+                    >
+                      <i className="fab fa-tiktok" />{" "}
+                      <span className="visuallyhidden">TikTok</span>
+                    </a>
               </div>
 
               {/* pour changer de langues */}

@@ -29,9 +29,9 @@ const StickyFooter = ({ isVisible }: StickyFooterProps) => {
       <div className={Styles.footerContent}>
         <center>
           {isMobile ? (
-            <ins data-revive-zoneid="233" data-revive-id="97f3bbebf0ebdc5eed163b8fac6171c8" />
+            <ins data-revive-zoneid="290" data-revive-id="16a6633e0a24be5cdd88d46adf91ea32" />
           ) : (
-            <ins data-revive-zoneid="232" data-revive-id="97f3bbebf0ebdc5eed163b8fac6171c8" />
+            <ins data-revive-zoneid="288" data-revive-id="16a6633e0a24be5cdd88d46adf91ea32" />
           )}
 
           <script async src="//client.cynomedia-africa.com/www/delivery/asyncjs.php"></script>

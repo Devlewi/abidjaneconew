@@ -36,6 +36,7 @@ export default function NavComponent({ locale }: NavComponentProps) {
             <li><Link href={`/${locale}/${categoryPath}/${slugs.banques}`} className="font-interMedium">{menu.banques}</Link></li>
             <li><Link href={`/${locale}/${categoryPath}/${slugs.assurances}`} className="font-interMedium">{menu.assurances}</Link></li>
             <li><Link href={`/${locale}/${categoryPath}/${slugs.marches}`} className="font-interMedium">{menu.marches}</Link></li>
+            <li><Link href={`/${locale}/${categoryPath}/${slugs.brvm}`} className="font-interMedium">{menu.brvm}</Link></li>
           </ul>
         </li>
 
@@ -73,6 +74,9 @@ export default function NavComponent({ locale }: NavComponentProps) {
         </li>
         <li className="menu-item">
           <Link href={`/${locale}/${categoryPath}/${slugs.pubreport}`}>{menu.pubreport}</Link>
+        </li>
+        <li className="menu-item">
+          <Link href={`/${locale}/${categoryPath}/${slugs.mines}`}>{menu.mines}</Link>
         </li>
       </ul>
     </nav>

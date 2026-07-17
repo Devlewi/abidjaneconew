@@ -43,38 +43,38 @@ const ThirdSectionBloc2Component: React.FC<ThirdSectionBloc2ComponentProps> = ({
 </Head>
     <article className="l-post grid-post grid-base-post">
       <div className="media">
-      {articleEmplacement2 ? (
-        <>
-        
-          <Link
-            href={`/${locale}/${singulararticle}/${articleEmplacement2.slug}`}
-            className="image-link media-ratio ratio-16-9"
-            title={articleEmplacement2.title}
-          >
-            <img
-              src={
-                articleEmplacement2.featured_image ||
-                "/fr/images/default1-img.webp"
-              }
-              alt={articleEmplacement2.title}
-              width={377}
-              height={220}
-              className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
-              loading="lazy"
-            />
-          </Link>
-          
-          {/* Crédit photo affiché ici */}
+  {articleEmplacement2 ? (
+    // ✅ Ajout de relative et group pour verrouiller l'étiquette sur l'image
+    <div className="relative w-full group">
+      <Link
+        href={`/${locale}/${singulararticle}/${articleEmplacement2.slug}`}
+        className="image-link media-ratio ratio-16-9 block"
+        title={articleEmplacement2.title}
+      >
+        <img
+          src={
+            articleEmplacement2.featured_image ||
+            "/fr/images/default1-img.webp"
+          }
+          alt={articleEmplacement2.title}
+          width={377}
+          height={220}
+          className="wp-post-image attachment-bunyad-medium size-bunyad-medium w-full object-cover rounded-lg"
+          loading="lazy"
+        />
+      </Link>
+
+      {/* ✅ Le crédit photo positionné en étiquette en bas à droite de l'image */}
       {articleEmplacement2.photo_credit && (
-        <p className="text-xs text-gray-500 mt-2 mb-0 italic text-left">
+        <span className="absolute bottom-3 right-3 bg-black/65 text-white text-[11px] font-medium py-1 px-2.5 rounded italic shadow-sm pointer-events-none z-10 m-0 backdrop-blur-[2px] max-w-[90%] truncate">
           {articleEmplacement2.photo_credit}
-        </p>
+        </span>
       )}
-        </>
-        ) : (
-          <div className="w-full md:w-[900px] h-[200px] md:h-[350px] bg-gray-300 rounded"></div>
-        )}
-      </div>
+    </div>
+  ) : (
+    <div className="w-full md:w-[900px] h-[200px] md:h-[350px] bg-gray-300 rounded"></div>
+  )}
+</div>
 
       <div className="content">
         <div className="post-meta post-meta-a has-below">

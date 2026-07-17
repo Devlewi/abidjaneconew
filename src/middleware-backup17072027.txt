@@ -1,0 +1,76 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
+import { i18n } from "../i18n-config";
+
+// 1. LISTE D'EXCLUSION STRICTE (Placée en dehors pour éviter de la recréer à chaque requête)
+const EXCLUDED_PATHS = new Set([
+  '/sitemap.xml', 
+  '/robots.txt', 
+  '/favicon.ico',
+  '/ads.txt',
+  '/feed',
+  '/fonts/ts-icons4e17.woff2',
+  '/js/f6927642ba9082ad8dc3ee9ebfa2ee4f.js',
+  '/js/436c92d375871a4de2f9bca5482b318f.js',
+  '/js/26163b5c5f9f5b17b1a824a3bcf585c9.js',
+  '/js/95d48ebe0fd227993325d142e6b718ef.js',
+  '/js/059cf10036c1aff6209bc1476002b48d.js',
+  '/js/bec7ef33f65e3d23332c9bb50b07ff9a.js',
+  '/js/bc39a8b646d1336276bcbdd278bd276f.js',
+]);
+
+export function middleware(request: NextRequest) {
+  const { pathname, search } = request.nextUrl;
+
+  // 2. FILTRE DES EXCLUSIONS (Globales, Dynamiques et Strictes)
+  if (
+    pathname.includes('.') || 
+    pathname.startsWith('/api/') || 
+    pathname.startsWith('/_next/') ||
+    pathname.startsWith('/js/') ||
+    pathname.startsWith('/fonts/') ||
+    EXCLUDED_PATHS.has(pathname) // <--- VÉRIFICATION ULTRA-RAPIDE ICI
+  ) {
+    return NextResponse.next();
+  }
+
+  // 3. RACINE "/" -> REWRITE vers "/fr"
+  if (pathname === "/") {
+    return NextResponse.rewrite(new URL(`/fr${search}`, request.url));
+  }
+
+  // 4. REDIRECTION /en -> /fr (Si le site est passé en français)
+  if (pathname.startsWith("/en/") || pathname === "/en") {
+    const newPath = pathname.replace("/en", "/fr");
+    return NextResponse.redirect(new URL(`${newPath}${search}`, request.url), 301);
+  }
+
+  // 5. VÉRIFIER SI LA LOCALE EST PRÉSENTE
+  const pathnameHasLocale = i18n.locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
+  );
+
+  // 6. SI PAS DE LOCALE -> RECUPERATION DES LIENS MSN (CORRECTION 404)
+  if (!pathnameHasLocale) {
+    if (pathname !== "/Home") {
+      // On redirige proprement (301) vers la structure exacte : /fr/article/mon-slug
+      return NextResponse.redirect(
+        new URL(`/fr/article${pathname}${search}`, request.url),
+        301
+      );
+    }
+
+    // Comportement par défaut si c'est /Home
+    return NextResponse.rewrite(
+      new URL(`/fr${pathname}${search}`, request.url)
+    );
+  }
+
+  return NextResponse.next();
+}
+
+// 7. MATCHER : On s'assure que Next.js n'essaie même pas de déclencher le middleware sur ces assets
+export const config = {
+  matcher: ["/((?!api|_next/static|_next/image|js|fonts|img|favicon.ico|robots.txt|sitemap.xml|ads.txt|feed).*)"],
+};

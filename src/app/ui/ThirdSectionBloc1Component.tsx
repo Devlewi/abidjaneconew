@@ -44,40 +44,39 @@ const ThirdSectionBloc1Component: React.FC<ThirdSectionBloc1ComponentProps> = ({
       </Head>
     <article className="l-post grid-post grid-base-post">
       <div className="media">
-        {articleEmplacement1 ? (
-          <>
-          
-          <Link
-            href={`/${locale}/${singulararticle}/${he.decode(articleEmplacement1.slug)}`}
-            className="image-link media-ratio ratio-16-9"
-            title={he.decode(articleEmplacement1.title)}
-          >
-            <img
-              src={
-                articleEmplacement1.featured_image ||
-                "/fr/images/default1-img.webp"
-              }
-              alt={he.decode(articleEmplacement1.title)}
-              width={377}
-              height={220}
-              className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
-              //loading="lazy"
-              loading="eager" // 👈 Important pour le LCP
-              fetchPriority="high" // 👈 Ajouté avec Chrome 103+ pour indiquer l’importance de cette image            
-            />
-          </Link>
+  {articleEmplacement1 ? (
+    // ✅ Ajout de relative et group sur le conteneur pour verrouiller l'étiquette sur l'image
+    <div className="relative w-full group">
+      <Link
+        href={`/${locale}/${singulararticle}/${he.decode(articleEmplacement1.slug)}`}
+        className="image-link media-ratio ratio-16-9 block"
+        title={he.decode(articleEmplacement1.title)}
+      >
+        <img
+          src={
+            articleEmplacement1.featured_image ||
+            "/fr/images/default1-img.webp"
+          }
+          alt={he.decode(articleEmplacement1.title)}
+          width={377}
+          height={220}
+          className="wp-post-image attachment-bunyad-medium size-bunyad-medium w-full object-cover rounded-lg"
+          loading="eager" // 👈 Important pour le LCP
+          fetchPriority="high" // 👈 Ajouté avec Chrome 103+ pour indiquer l’importance de cette image            
+        />
+      </Link>
 
-          {/* Crédit photo affiché ici */}
+      {/* ✅ Le crédit photo positionné en étiquette en bas à droite de l'image */}
       {articleEmplacement1.photo_credit && (
-        <p className="text-xs text-gray-500 mt-2 mb-0 italic text-left">
+        <span className="absolute bottom-3 right-3 bg-black/65 text-white text-[11px] font-medium py-1 px-2.5 rounded italic shadow-sm pointer-events-none z-10 m-0 backdrop-blur-[2px] max-w-[90%] truncate">
           {articleEmplacement1.photo_credit}
-        </p>
+        </span>
       )}
-          </>
-        ) : (
-          <div className="w-full md:w-[900px] h-[200px] md:h-[350px] bg-gray-300 rounded"></div>
-        )}
-      </div>
+    </div>
+  ) : (
+    <div className="w-full md:w-[900px] h-[200px] md:h-[350px] bg-gray-300 rounded"></div>
+  )}
+</div>
 
       <div className="content">
         <div className="post-meta post-meta-a has-below">

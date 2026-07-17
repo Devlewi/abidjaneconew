@@ -63,6 +63,7 @@
     "entreprises": "Entreprises",
     "finance": "Finance",
     "banques": "Banques",
+    "brvm": "BRVM",
     "assurances": "Assurances",
     "marches": "Marchés",
     "infra": "Infrastructures",
@@ -77,7 +78,8 @@
     "opinions": "Opinions",
     "decryptage": "Décryptage",
     "international": "International",
-    "pubreport": "Publi-reportage"
+    "pubreport": "Publi-reportage",
+    "mines": "Mines"
   },
   "slugs": {
     "eco": "ecobusiness",
@@ -86,6 +88,7 @@
     "entreprises": "entreprises",
     "finance": "finance",
     "banques": "banques",
+    "brvm": "brvm",
     "assurances": "assurances",
     "marches": "marches",
     "infra": "infrastructures",
@@ -100,6 +103,7 @@
     "opinions": "opinions-fr",
     "decryptage": "decryptage-fr",
     "international": "international-info",
-    "pubreport": "publicite-reportages-fr"
+    "pubreport": "publicite-reportages-fr",
+    "mines": "mines-fr"
   }
 }

@@ -100,30 +100,30 @@ const FifthSectionBloc1Component: React.FC<FifthSectionBloc1ComponentProps> = ({
           
           <>
           <Link
-            href={`/${locale}/${articlePath}/${articleEmplacement1.slug}`}
-            className="small-media image-link media-ratio ar-bunyad-thumb"
-            title={decodeHTML(articleEmplacement1.title)}
-          >
-            <img
-              src={articleEmplacement1.featured_image || "/fr/images/default1-img.webp"}
-              alt={decodeHTML(articleEmplacement1.title || "Image indisponible")}
-              className={`wp-post-image attachment-bunyad-medium size-bunyad-medium rounded-md transition-opacity duration-700 ${
-                imageLoaded ? "opacity-100" : "opacity-0"
-              }`}
-              loading="lazy"
-              onLoad={() => setImageLoaded(true)}
-              width={300}
-              height={200}
-              style={{ borderRadius: 6 }}
-            />
-          </Link>
-          
-            {/* Crédit photo affiché ici */}
-            {articleEmplacement1.photo_credit && (
-            <p className="text-xs text-gray-500 mt-2 mb-0 italic text-left">
-              {articleEmplacement1.photo_credit}
-            </p>
-          )}
+  href={`/${locale}/${articlePath}/${articleEmplacement1.slug}`}
+  className="small-media image-link media-ratio ar-bunyad-thumb relative block" // 
+  title={decodeHTML(articleEmplacement1.title)}
+>
+  <img
+    src={articleEmplacement1.featured_image || "/fr/images/default1-img.webp"}
+    alt={decodeHTML(articleEmplacement1.title || "Image indisponible")}
+    className={`wp-post-image attachment-bunyad-medium size-bunyad-medium rounded-md transition-opacity duration-700 ${
+      imageLoaded ? "opacity-100" : "opacity-0"
+    }`}
+    loading="lazy"
+    onLoad={() => setImageLoaded(true)}
+    width={300}
+    height={200}
+    style={{ borderRadius: 6 }}
+  />
+  
+  {/* ✅ Crédit photo superposé en bas à droite de l'image (right-1.5) */}
+  {articleEmplacement1.photo_credit && (
+    <span className="absolute bottom-1.5 right-1.5 bg-black/65 text-white text-[9px] font-medium py-0.5 px-1.5 rounded italic shadow-sm pointer-events-none z-10 m-0 backdrop-blur-[2px] max-w-[85%] truncate">
+      {articleEmplacement1.photo_credit}
+    </span>
+  )}
+</Link>
 
           </>
         ) : (

@@ -13,6 +13,7 @@ type RelatedArticle = {
   slug: string;
   featured_image: string;
   date_published: string;
+  photo_credit?: string; // ✅ Ajouté ici pour TypeScript
 };
 
 interface Props {
@@ -35,18 +36,24 @@ const ThreeLastPostSimilComponent: React.FC<Props> = ({
         <div className="loop loop-grid loop-grid-sm grid grid-3 md:grid-2 xs:grid-1">
           {relatedArticles.map((related, index) => (
             <article key={index} className="l-post grid-post grid-sm-post">
-              <div className="media">
-              <Link
-  href={`/${locale}/${singulararticle}/${related.slug}`}
-  title={related.title}
->
-  <img
-    src={related.featured_image || "/fr/images/default1-img.webp"}
-    alt={related.title}
-    className="w-full h-64 sm:h-48 object-cover rounded-md"
-  />
-</Link>
-
+              <div className="media relative group mb-3">
+                <Link
+                  href={`/${locale}/${singulararticle}/${related.slug}`}
+                  title={related.title}
+                >
+                  <img
+                    src={related.featured_image || "/fr/images/default1-img.webp"}
+                    alt={related.title}
+                    className="w-full h-64 sm:h-48 object-cover rounded-md"
+                  />
+                  
+                  {/* ✅ Crédit photo positionné proprement en bas à droite */}
+                  {related.photo_credit && (
+                    <span className="absolute bottom-2 right-2 bg-black/65 text-white text-[10px] font-medium py-1 px-2 rounded italic pointer-events-none z-10 max-w-[90%] truncate shadow-sm backdrop-blur-[1px]">
+                      {related.photo_credit}
+                    </span>
+                  )}
+                </Link>
               </div>
               <div className="content">
                 <div className="post-meta post-meta-a has-below">

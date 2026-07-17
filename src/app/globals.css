@@ -5934,3 +5934,95 @@ div.swiper-pagination-bullet {
 .wp-content iframe {
     max-width: 100% !important;
 }
+
+
+/* 📸 Styles pour le plugin WordPress LEWI CREDIT */
+/*
+.lewi-photo-credit {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.lewi-photo-credit img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 0.5rem; 
+}
+
+.lewi-photo-credit .lewi-credit-text {
+  position: absolute !important;
+  bottom: 12px !important;
+  right: 12px !important;
+  background-color: rgba(0, 0, 0, 0.65) !important;
+  color: #ffffff !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  padding: 4px 10px !important;
+  font-style: italic !important;
+  border-radius: 4px !important;
+  z-index: 10 !important;
+  line-height: Arial, sans-serif !important;
+  pointer-events: none;
+}
+*/
+
+
+/* Supprime l'effet du style="width: 310px" hérité de WordPress */
+.wp-content .wp-caption {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important; /* Force la box à prendre toute la largeur */
+  max-width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 2rem !important;
+}
+
+/* Force l'image réelle à occuper tout l'espace de manière propre */
+.wp-content .wp-caption img {
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+  display: block !important;
+  border-radius: 0.5rem;
+}
+
+/* Le badge "Archives" ou crédit photo calé en bas à droite */
+.wp-content .wp-caption-text {
+  position: absolute !important;
+  bottom: 12px !important;
+  right: 12px !important;
+  background-color: rgba(0, 0, 0, 0.65) !important;
+  color: #ffffff !important;
+  font-size: 11px !important;
+  padding: 4px 10px !important;
+  font-style: italic !important;
+  border-radius: 4px !important;
+  margin: 0 !important;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Style pour les liens "LIRE AUSSI" dans le contenu des articles */
+/* Style chirurgical pour TOUT le bloc "LIRE AUSSI" (Texte + Lien) */
+/* Style ultra-précis pour forcer TOUT le bloc en rouge (Texte + Lien) */
+.wp-content p.lire-aussi-box,
+.wp-content p.lire-aussi-box strong,
+.wp-content p.lire-aussi-box strong a,
+.wp-content .lire-aussi-box a {
+    color: #db2e44 !important;
+}
+
+/* Forcer le soulignement et la transition sur le lien */
+.wp-content p.lire-aussi-box a {
+    transition: color 0.2s ease !important;
+}
+
+/* Style au survol du lien en production */
+.wp-content p.lire-aussi-box a:hover {
+    color: #b12435 !important;
+}

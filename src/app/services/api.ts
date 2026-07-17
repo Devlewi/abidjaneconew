@@ -69,6 +69,7 @@ export async function fetchPageBySlug(slug: string, locale: string) {
     `${BASE_URL}/wp-json/wp/v2/pages?slug=${slug}&lang=${locale}`,
     { next: { revalidate: 60 } }
   );
+  
 
   if (!res.ok) {
     throw new Error(`Failed to fetch page: ${res.statusText}`);
@@ -318,3 +319,73 @@ export const fetchStickyStatus = async () => {
     return null; // valeur par défaut
   }
 };
+
+
+
+
+
+//PARTIE RSS
+/**
+ * Récupère les articles agrégés du réseau ECOX depuis le flux JSON de Cynomedia
+ * et les formate selon l'interface Article[] de l'application.
+ */
+/**
+ * Récupère les articles agrégés du réseau ECOX depuis le flux JSON de Cynomedia
+ * et les formate selon l'interface Article[] de l'application.
+ */
+export async function fetchEcoxNetworkNews(): Promise<Article[]> {
+  try {
+    const JSON_URL = 'https://cynomedia.com/ecox-news.json';
+
+    // Fetch avec un cache Next.js de 5 minutes (300 secondes)
+    const res = await fetch(JSON_URL, {
+      next: { revalidate: 300 }
+    });
+
+    if (!res.ok) {
+      console.error(`[ECOX SERVICE ERROR] Impossible de charger le JSON, statut : ${res.status}`);
+      return [];
+    }
+
+    const data = await res.json();
+
+    if (!data.articles || !Array.isArray(data.articles)) {
+      return [];
+    }
+
+    // Mappage et normalisation des données vers ton interface Article
+    return data.articles.map((item: any, index: number) => {
+      // Extraction du slug à partir du lien d'origine
+      const slug = item.link.split('/').filter(Boolean).pop() || "";
+      
+      // Reconstruction de l'URL interne multilingue propre (/fr/article/slug)
+      const correctedLink = `${item.source}/fr/article/${slug}`;
+
+      // Génération d'un nom propre de site propre (ex: "https://www.faso-eco.com" -> "FASO ECO")
+      const siteNameCleaned = item.source
+        .replace('https://', '')
+        .replace('www.', '')
+        .replace('.com', '')
+        .replace('-', ' ')
+        .toUpperCase();
+
+      return {
+        id: index + 1,
+        title: item.title,
+        link: correctedLink,
+        slug: slug,
+        excerpt: item.excerpt,
+        featured_image: item.featured_image || "",
+        views: "0",
+        date_published: item.date, // Format ISO natif fourni par le script PHP
+        author: item.author || "Rédaction",
+        siteName: siteNameCleaned,
+        credit_photo: item.credit_photo || "" // Récupération dynamique depuis ton flux
+      };
+    });
+  } catch (error) {
+    console.error("[ECOX SERVICE CRITICAL] Échec fetchEcoxNetworkNews :", error);
+    return [];
+  }
+}
+

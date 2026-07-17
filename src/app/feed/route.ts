@@ -11,10 +11,15 @@ interface WPCategory {
   name: string;
 }
 
-// Fonction utilitaire pour nettoyer les CDATA doublons qui viennent de WordPress
+// Nettoyage de sécurité des catégories pour le XML
+function sanitizeCategory(name: string): string {
+  if (!name) return '';
+  const decoded = he.decode(name);
+  return decoded.replace(/\s*&\s*/g, ' et ').trim();
+}
+
 function cleanXmlCdata(content: string): string {
   if (!content) return '';
-  // Supprime les <![CDATA[ et ]]> qui traînent potentiellement dans la chaîne
   return content.replace(/<!\[CDATA\[/gi, '').replace(/\]\]>/gi, '');
 }
 
@@ -31,10 +36,13 @@ export async function GET(request: Request) {
   try {
     const requestUrl = new URL(request.url);
     const pathname = requestUrl.pathname;
+    
+    // Détection de la locale (Pathname, Query param, ou 'fr' par défaut)
     const match = pathname.match(/^\/([a-zA-Z-]{2,5})\/feed/);
-    const locale = match?.[1] ?? 'fr'; // fallback sur 'fr'
+    const searchParams = requestUrl.searchParams;
+    const locale = match?.[1] || searchParams.get('lang') || 'fr';
+    
     const posts = await getArticles(locale);
-
     const feedUrl = `${apiBaseUrl}${pathname}`;
 
     const feed = new Feed({
@@ -42,7 +50,6 @@ export async function GET(request: Request) {
       description: `Flux RSS des derniers articles (${locale})`,
       id: feedUrl,
       link: `${apiBaseUrl}/${locale}`,
-      // Solution pour le avertissement de la ligne 250 (Missing atom:link)
       feedLinks: {
         atom: feedUrl,
       },
@@ -53,9 +60,21 @@ export async function GET(request: Request) {
 
     posts.forEach((post: any) => {
       const postUrl = `${apiBaseUrl}${post.link.replace(/^https?:\/\/[^/]+/, '')}`;
-      const featuredImageUrl = post._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? '';
+      
+      const featuredMedia = post._embedded?.['wp:featuredmedia']?.[0];
+      const featuredImageUrl = featuredMedia?.source_url ?? '';
+      
+      // Extraction du crédit photo / Légende
+      let photoCredit = '';
+      if (featuredMedia?.caption?.rendered) {
+        photoCredit = featuredMedia.caption.rendered.replace(/<\/?[^>]+(>|$)/g, "").trim();
+      }
+      
+      if (!photoCredit) {
+        photoCredit = featuredMedia?.alt_text || post.title.rendered;
+      }
 
-      // On nettoie le contenu brut de WordPress de tout CDATA parasite
+      const cleanCredit = he.decode(photoCredit);
       const cleanWordPressContent = cleanXmlCdata(post.content.rendered);
 
       feed.addItem({
@@ -64,20 +83,18 @@ export async function GET(request: Request) {
         link: postUrl,
         description: he.decode(cleanXmlCdata(post.excerpt?.rendered ?? '')),
         
-        // Contenu HTML propre, sans aucun CDATA écrit à la main
-        content: `
-          <p><img width="1000" style="max-width:100%;height:auto;object-fit:contain;display:block;margin:0 auto;" src="${featuredImageUrl}" alt="${post.title.rendered}" decoding="async" /></p>
-          ${cleanWordPressContent}
-        `.trim(),
+        // Nettoyé : Plus d'image HTML forcée ici pour éviter les doublons
+        content: cleanWordPressContent.trim(),
         
         date: new Date(post.date),
         author: [{ name: 'webmaster@Abidjan-eco.com' }],
+        
         category: post.categories?.map((catId: number) => {
           const category = post._embedded?.["wp:term"]?.[0]?.find((term: WPCategory) => term.id === catId);
-          return category ? { name: category.name } : null;
+          return category ? { name: sanitizeCategory(category.name) } : null;
         }).filter(Boolean),
 
-        // Ajout de la balise média pour MSN
+        // L'image passe uniquement par ici, au format standard XML
         ...(featuredImageUrl && {
           extensions: [
             {
@@ -86,7 +103,8 @@ export async function GET(request: Request) {
                 _attributes: {
                   url: featuredImageUrl,
                   type: "image/webp",
-                  medium: "image"
+                  medium: "image",
+                  alt: he.encode(cleanCredit) 
                 }
               }
             }
@@ -95,7 +113,6 @@ export async function GET(request: Request) {
       });
     });
 
-    // Injection du namespace xmlns:media
     let rssXml = feed.rss2();
     if (!rssXml.includes('xmlns:media=')) {
       rssXml = rssXml.replace(
@@ -107,7 +124,6 @@ export async function GET(request: Request) {
     return new NextResponse(rssXml, {
       headers: {
         'Content-Type': 'application/rss+xml; charset=utf-8',
-        // Optionnel : Désactive le cache navigateur pendant vos tests
         'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate',
       },
     });
@@ -116,5 +132,3 @@ export async function GET(request: Request) {
     return new NextResponse('Erreur lors de la génération du flux RSS', { status: 500 });
   }
 }
-
-

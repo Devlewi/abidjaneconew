@@ -4,7 +4,7 @@ smartadserver.com, 3563, RESELLER
 beachfront.com, 13749, RESELLER, e2541279e8e2ca4d
 advertising.com, 28458, RESELLER
 admanmedia.com, 556, RESELLER 
-OWNERDOMAIN=people237.com
+OWNERDOMAIN=abidjan-eco.com
 MANAGERDOMAIN=themoneytizer.com
 themoneytizer.com,5637,DIRECT
 smartadserver.com,1097,DIRECT

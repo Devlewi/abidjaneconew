@@ -122,7 +122,7 @@ const SixLastPostListComponent: React.FC<Props> = ({ locale }) => {
               {formatLocalizedDate(article.date_published, locale)}
             </div>
             <div className="flex items-center text-sm text-gray-500">
-              {article.views} {view}
+              {article.views} {view} 
             </div>
           </div>
         </div>

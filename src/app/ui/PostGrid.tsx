@@ -14,6 +14,7 @@ type Article = {
   featured_image: string;
   date: string;
   views: number;
+  photo_credit?: string; // ✅ Ajout du crédit photo dans le type
 };
 
 interface PostGridProps {
@@ -39,9 +40,10 @@ export default function PostGrid({ dataPost, locale }: PostGridProps) {
         {dataPost.map((article) => (
           <article key={article.id} className="l-post grid-post grid-base-post mb-8">
             <div className="media">
+              {/* ✅ Ajout de relative et block pour ancrer le crédit sur l'image */}
               <Link
                 href={`/${locale}/${articlePath}/${article.slug}`}
-                className="image-link media-ratio ratio-16-9"
+                className="image-link media-ratio ratio-16-9 relative block"
                 title={article.title}
               >
                 <img
@@ -52,6 +54,13 @@ export default function PostGrid({ dataPost, locale }: PostGridProps) {
                   className="wp-post-image attachment-bunyad-medium size-bunyad-medium"
                   loading="lazy"
                 />
+
+                {/* ✅ Affichage du crédit photo en bas à droite sur l'image */}
+                {article.photo_credit && (
+                  <span className="absolute bottom-3 right-3 bg-black/65 text-white text-[11px] font-medium py-1 px-2.5 rounded italic shadow-sm pointer-events-none z-10 m-0 backdrop-blur-[2px] max-w-[90%] truncate">
+                    {article.photo_credit}
+                  </span>
+                )}
               </Link>
             </div>
             <div className="content">
@@ -68,7 +77,7 @@ export default function PostGrid({ dataPost, locale }: PostGridProps) {
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     fontSize: 16,
-                    marginTop:-15
+                    marginTop: -15
                   }}
                 >
                   <Link href={`/${locale}/${articlePath}/${article.slug}`}>
@@ -109,7 +118,7 @@ export default function PostGrid({ dataPost, locale }: PostGridProps) {
                 {/* Vue */}
                 <div className="mt-[14px] mb-[-10px] text-[#fff] font-semibold flex items-center text-[12px]">
                   <FiEye className="mr-1" />
-                  {article.views} {view}
+                  {article.views} {view}mmm
                 </div>
 
                 {/* Extrait */}
@@ -120,8 +129,10 @@ export default function PostGrid({ dataPost, locale }: PostGridProps) {
                     dangerouslySetInnerHTML={{ __html: article.excerpt }}
                   />
                 )}
+
+                
               </div>
-              </div>
+            </div>
           </article>
         ))}
       </div>

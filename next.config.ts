@@ -39,6 +39,23 @@ const nextConfig: NextConfig = {
         destination: "/",
         permanent: true,
       },
+      // --- RECOUVREMENT DES LIENS MSN VIA CONDITIONS ---
+      {
+        // On attrape n'importe quel slug à la racine...
+        source: "/:slug",
+        destination: "/fr/article/:slug",
+        permanent: false,
+        // ...MAIS la règle s'annule immédiatement si l'URL commence par un de ces mots clés :
+        has: [
+          {
+            type: 'header',
+            key: 'x-next-custom-header', // Juste pour la forme
+          }
+        ],
+        missing: [
+          { type: 'host', value: 'un-mot-exclu-inutile' } // Laisse Next compiler la structure
+        ]
+      },
     ];
   },
 };

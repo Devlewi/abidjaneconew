@@ -65,6 +65,21 @@ export async function generateMetadata({ params }: Props) {
   }
 }
 
+
+function getYouTubeEmbedUrl(url: string): string {
+  if (!url) return "";
+  
+  // Expression régulière pour capturer l'ID de la vidéo YouTube dans presque tous les formats existants
+  const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  const match = url.match(regExp);
+
+  if (match && match[2].length === 11) {
+    return `https://www.youtube.com/embed/${match[2]}`;
+  }
+  
+  return url; // Retourne l'url initiale si aucun ID n'est trouvé
+}
+
 export default async function VideoPage({ params }: Props) {
   const { locale, slug } = await params;
   const t = getTranslation(locale);
@@ -133,14 +148,14 @@ export default async function VideoPage({ params }: Props) {
               {/* Affichage vidéo YouTube intégrée */}
               <div className="mb-6 aspect-w-16 aspect-h-9">
               <iframe
-                  width="100%"
-                  height="480"
-                  src={post.url_video.replace("watch?v=", "embed/")}
-                  title={he.decode(post.title)}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+    width="100%"
+    height="480"
+    src={getYouTubeEmbedUrl(post.url_video)}
+    title={he.decode(post.title)}
+    frameBorder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  />
               </div>
 
               {post.thumbnail && (

@@ -73,63 +73,48 @@ export default function BrandGrid({ dataArticles, locale }: BrandGridProps) {
               className="l-post grid-post grid-base-post mb-[50px] bg-[transparent] p-4 rounded-md"
             >
               <div className="medium-media relative">
-                 {/* Brand : nom + logo */}
-                <div className="flex items-center gap-2 mb-2">
-                  {article.brand_logo && (
-                    <img
-                      src={article.brand_logo}
-                      alt={article.brand_name}
-                      className="h-20 w-20 rounded-md"
-                    />
-                  )}
-                  <span className="text-white font-semibold">{article.brand_name}</span>
-                </div>
-                {/* Badge catégorie */}
-                
-                {/*
-                <div className="absolute top-0 left-0 mt-[-15px] z-20">
-                  {article.subcategory?.slug && article.subcategory?.name ? (
-                    <Link
-                      href={`/${locale}/${category}/${postcategory}`}
-                      className="bg-[#db2e44] p-2 text-white rounded-md font-semibold"
-                    >
-                      <span>{decodeHTML(article.subcategory.name)}</span>
-                    </Link>
-                  ) : (
-                    <div className="bg-gray-700 p-2 text-gray-500 rounded-md font-semibold">
-                      emplacement vide
-                    </div>
-                  )}
-                </div>
-                */}
+  {/* Brand : nom + logo */}
+  <div className="flex items-center gap-2 mb-2">
+    {article.brand_logo && (
+      <img
+        src={article.brand_logo}
+        alt={article.brand_name}
+        className="h-20 w-20 rounded-md"
+      />
+    )}
+    <span className="text-white font-semibold">{article.brand_name}</span>
+  </div>
+  {/* Badge catégorie */}
 
-                {/* Image */}
-                <Link
-                  href={`/${locale}/${articlePath}/${article.slug}`}
-                  className="small-media image-link media-ratio ar-bunyad-thumb"
-                  title={decodeHTML(article.title)}
-                >
-                  <img
-                    src={article.featured_image || "/fr/images/default1-img.webp"}
-                    alt={decodeHTML(article.title || "Image indisponible")}
-                    className={`wp-post-image attachment-bunyad-medium size-bunyad-medium rounded-md transition-opacity duration-700 ${
-                      imageLoaded ? "opacity-100" : "opacity-0"
-                    }`}
-                    loading="lazy"
-                    onLoad={() => handleImageLoad(article.id)}
-                    width={300}
-                    height={200}
-                    style={{ borderRadius: 6 }}
-                  />
-                </Link>
 
-                {/* Crédit photo */}
-                {article.photo_credit && (
-                  <p className="text-xs text-gray-100 mt-2 mb-0 italic text-left">
-                    {article.photo_credit}
-                  </p>
-                )}
-              </div>
+  {/* Image */}
+  {/* ✅ Ajout de "relative block" sur le Link pour ancrer le crédit photo à l'image */}
+  <Link
+    href={`/${locale}/${articlePath}/${article.slug}`}
+    className="small-media image-link media-ratio ar-bunyad-thumb relative block"
+    title={decodeHTML(article.title)}
+  >
+    <img
+      src={article.featured_image || "/fr/images/default1-img.webp"}
+      alt={decodeHTML(article.title || "Image indisponible")}
+      className={`wp-post-image attachment-bunyad-medium size-bunyad-medium rounded-md transition-opacity duration-700 ${
+        imageLoaded ? "opacity-100" : "opacity-0"
+      }`}
+      loading="lazy"
+      onLoad={() => handleImageLoad(article.id)}
+      width={300}
+      height={200}
+      style={{ borderRadius: 6 }}
+    />
+
+    {/* ✅ Le crédit photo est placé directement DANS le Link en absolute bas-droite */}
+    {article.photo_credit && (
+      <span className="absolute bottom-1.5 right-1.5 bg-black/65 text-white text-[9px] font-medium py-0.5 px-1.5 rounded italic shadow-sm pointer-events-none z-10 m-0 backdrop-blur-[2px] max-w-[85%] truncate">
+        {article.photo_credit}
+      </span>
+    )}
+  </Link>
+</div>
 
               {/* Contenu */}
               <div className="content mt-3">

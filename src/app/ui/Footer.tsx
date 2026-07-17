@@ -18,6 +18,7 @@ export default function Footer({ isVisible }: StickyFooterProps) {
   const twitterUrl = process.env.NEXT_PUBLIC_TWITTER_URL;
   const youtubeUrl = process.env.NEXT_PUBLIC_YOUTUBE_URL;
   const instagramUrl = process.env.NEXT_PUBLIC_INSTAGRAM_URL;
+  const tiktokUrl = process.env.NEXT_PUBLIC_TIKTOK_URL;
   const threadsUrl = process.env.NEXT_PUBLIC_THREADS_URL;
   const whatsappUrl = process.env.NEXT_PUBLIC_WHATSAPP_CHANNEL_URL;
 
@@ -345,7 +346,28 @@ export default function Footer({ isVisible }: StickyFooterProps) {
                       <span className="visuallyhidden">Threads</span>
                     </a>
     
-)}     
+)}    
+
+
+{tiktokUrl && (
+  <a
+    href={tiktokUrl}
+    className="link service2 s-tiktok"
+    target="_blank"
+    rel="nofollow noopener"
+    style={{
+      backgroundColor: "white",
+      width: "30px",
+      height: "30px"
+    }}
+  >
+    <i
+      className="fab fa-tiktok"
+      style={{ fontSize: 25, color: "#c3233e" }}
+    />
+    <span className="visuallyhidden">TikTok</span>
+  </a>
+)}
   
     </div>
   </div>

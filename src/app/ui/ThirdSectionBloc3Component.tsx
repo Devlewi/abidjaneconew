@@ -67,33 +67,33 @@ const ThirdSectionBloc3Component: React.FC<ThirdSectionBloc3ComponentProps> = ({
         {articleEmplacement3 ? (
           <>
           
-          <Link
-            href={`/${locale}/${articlePath}/${articleEmplacement3.slug}`}
-            className="small-media image-link media-ratio ar-bunyad-thumb"
-            title={decodeHTML(articleEmplacement3.title)}
-          >
-            <img
-              src={
-                articleEmplacement3.featured_image || "/fr/images/default1-img.webp"
-              }
-              alt={decodeHTML(articleEmplacement3.title)}
-              className={`wp-post-image attachment-bunyad-medium size-bunyad-medium rounded-md ${
-                imageLoaded ? "opacity-100" : "opacity-0"
-              }`}
-              loading="lazy"
-              onLoad={() => setImageLoaded(true)}
-              width={300}
-              height={200}
-              style={{ borderRadius: 6 }}
-            />
-          </Link>
+        <Link
+      href={`/${locale}/${articlePath}/${articleEmplacement3.slug}`}
+      className="small-media image-link media-ratio ar-bunyad-thumb relative block"
+      title={decodeHTML(articleEmplacement3.title)}
+    >
+      <img
+        src={
+          articleEmplacement3.featured_image || "/fr/images/default1-img.webp"
+        }
+        alt={decodeHTML(articleEmplacement3.title)}
+        className={`wp-post-image attachment-bunyad-medium size-bunyad-medium rounded-md ${
+          imageLoaded ? "opacity-100" : "opacity-0"
+        }`}
+        loading="lazy"
+        onLoad={() => setImageLoaded(true)}
+        width={300}
+        height={200}
+        style={{ borderRadius: 6 }}
+      />
 
-                         {/* Crédit photo affiché ici */}
+      {/* ✅ Le crédit photo est placé directement DANS le Link en absolute */}
       {articleEmplacement3.photo_credit && (
-        <p className="text-xs text-gray-500 mt-2 mb-0 italic text-left">
+        <span className="absolute bottom-1.5 right-1.5 bg-black/65 text-white text-[9px] font-medium py-0.5 px-1.5 rounded italic shadow-sm pointer-events-none z-10 m-0 backdrop-blur-[2px] max-w-[85%] truncate">
           {articleEmplacement3.photo_credit}
-        </p>
+        </span>
       )}
+    </Link>
 
           </>
 
