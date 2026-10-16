@@ -200,7 +200,7 @@ export type CommuniqueItem = {
 // services/api.ts
 export async function fetchFlashInfo(locale: string, page: number, perPage: number) {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/wp-json/wp/v2/flash_info?page=${page}&per_page=${perPage}&lang=${locale}`
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/wp-json/wp/v2/flash_info?page=${page}&per_page=${perPage}&lang=${locale}`      
     );
   
     if (!res.ok) {
