@@ -1,7 +1,5 @@
 import { Metadata } from "next";
-
 import "../globals.css";
-
 import EspacePub1 from "../ui/EspacePub1";
 import FlashInfoComponent from "../ui/FlashInfoComponent";
 import ThirdSectionComponent from "../ui/ThirdSectionComponent";
@@ -211,8 +209,6 @@ export default async function Home({ params }: Props) {
             locale={locale}
             dataPost={latestPubliciteReportage}/>
           */}
-
-
           {/* section 12 : */}
           <NinthSectionComponent/>
         </div>
